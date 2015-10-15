@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical" android:layout_width="fill_parent"
+	android:layout_height="fill_parent" android:paddingLeft="60px"
+	android:paddingRight="60px" android:paddingTop="10px"
+	android:paddingBottom="10px" android:background="#9ae4e8">
+
+	<ImageView android:src="@drawable/twitterlogo"
+		android:layout_height="wrap_content" android:layout_width="wrap_content"
+		android:layout_gravity="center_horizontal"
+		android:layout_marginBottom="20px" />
+
+	<TextView android:layout_width="wrap_content"
+		android:layout_height="wrap_content" android:id="@+id/lblUserId"
+		android:text="Username" android:textColor="#000" android:textSize="14sp"
+		android:layout_marginBottom="5px" />
+	<EditText android:layout_height="wrap_content"
+		android:layout_width="fill_parent" android:id="@+id/txtUserId"
+		android:imeOptions="actionNext" />
+	<TextView android:layout_width="wrap_content"
+		android:layout_height="wrap_content" android:id="@+id/lblPassword"
+		android:text="Password" android:textColor="#000" android:textSize="14sp"
+		android:layout_marginBottom="5px" />
+	<EditText android:layout_height="wrap_content"
+		android:layout_width="fill_parent" android:id="@+id/txtPassword"
+		android:password="true" android:imeOptions="actionDone"/>
+
+	<Button android:id="@+id/save" android:layout_width="100px"
+		android:layout_height="wrap_content" android:text="Save"
+		android:layout_gravity="center_horizontal" android:layout_marginTop="20px" />
+
+	<Button android:id="@+id/cancel" android:layout_width="100px"
+		android:layout_height="wrap_content" android:text="Cancel"
+		android:layout_gravity="center_horizontal" />
+
+</LinearLayout>
+

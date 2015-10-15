@@ -1,0 +1,765 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<feed xmlns='http://www.w3.org/2005/Atom' xmlns:media='http://search.yahoo.com/mrss/'
+	xmlns:openSearch='http://a9.com/-/spec/opensearch/1.1/' xmlns:gd='http://schemas.google.com/g/2005'
+	xmlns:yt='http://gdata.youtube.com/schemas/2007' gd:etag='W/&quot;D0cFQno9fyp7ImA9WxNXF04.&quot;'>
+	<id>tag:youtube.com,2008:videos</id>
+	<updated>2009-10-05T09:30:13.467Z</updated>
+	<category scheme='http://schemas.google.com/g/2005#kind' term='http://gdata.youtube.com/schemas/2007#video' />
+	<title>YouTube Videos matching query: football -soccer</title>
+	<logo>http://www.youtube.com/img/pic_youtubelogo_123x63.gif</logo>
+	<link rel='alternate' type='text/html' href='http://www.youtube.com' />
+	<link rel='http://schemas.google.com/g/2005#feed' type='application/atom+xml'
+		href='http://gdata.youtube.com/feeds/api/videos?v=2' />
+	<link rel='http://schemas.google.com/g/2005#batch' type='application/atom+xml'
+		href='http://gdata.youtube.com/feeds/api/videos/batch?v=2' />
+	<link rel='self' type='application/atom+xml'
+		href='http://gdata.youtube.com/feeds/api/videos?q=football+-soccer&amp;start-index=11&amp;max-results=10&amp;orderby=published&amp;v=2' />
+	<link rel='service' type='application/atomsvc+xml'
+		href='http://gdata.youtube.com/feeds/api/videos?alt=atom-service&amp;v=2' />
+	<link rel='previous' type='application/atom+xml'
+		href='http://gdata.youtube.com/feeds/api/videos?q=football+-soccer&amp;start-index=1&amp;max-results=10&amp;orderby=published&amp;v=2' />
+	<link rel='next' type='application/atom+xml'
+		href='http://gdata.youtube.com/feeds/api/videos?q=football+-soccer&amp;start-index=21&amp;max-results=10&amp;orderby=published&amp;v=2' />
+	<author>
+		<name>YouTube</name>
+		<uri>http://www.youtube.com/</uri>
+	</author>
+	<generator version='2.0' uri='http://gdata.youtube.com/'>YouTube data API</generator>
+	<openSearch:totalResults>424798</openSearch:totalResults>
+	<openSearch:startIndex>11</openSearch:startIndex>
+	<openSearch:itemsPerPage>10</openSearch:itemsPerPage>
+	<entry gd:etag='W/&quot;A0ABRH47eCp7ImA9WxNXF08.&quot;'>
+		<id>tag:youtube.com,2008:video:4BRdYSmBoqA</id>
+		<published>2009-10-05T08:02:07.000Z</published>
+		<updated>2009-10-05T08:02:35.000Z</updated>
+		<category scheme='http://schemas.google.com/g/2005#kind'
+			term='http://gdata.youtube.com/schemas/2007#video' />
+		<category scheme='http://gdata.youtube.com/schemas/2007/categories.cat'
+			term='Sports' label='Sport' />
+		<category scheme='http://gdata.youtube.com/schemas/2007/keywords.cat'
+			term='FA Tesco Skills' />
+		<category scheme='http://gdata.youtube.com/schemas/2007/keywords.cat'
+			term='Frank Lampard' />
+		<title>FA Tesco Skills!</title>
+		<content type='application/x-shockwave-flash'
+			src='http://www.youtube.com/v/4BRdYSmBoqA?f=videos&amp;app=youtube_gdata' />
+		<link rel='alternate' type='text/html'
+			href='http://www.youtube.com/watch?v=4BRdYSmBoqA&amp;feature=youtube_gdata' />
+		<link rel='http://gdata.youtube.com/schemas/2007#video.responses'
+			type='application/atom+xml'
+			href='http://gdata.youtube.com/feeds/api/videos/4BRdYSmBoqA/responses?v=2' />
+		<link rel='http://gdata.youtube.com/schemas/2007#video.related'
+			type='application/atom+xml'
+			href='http://gdata.youtube.com/feeds/api/videos/4BRdYSmBoqA/related?v=2' />
+		<link rel='self' type='application/atom+xml'
+			href='http://gdata.youtube.com/feeds/api/videos/4BRdYSmBoqA?v=2' />
+		<author>
+			<name>matchymovie</name>
+			<uri>http://gdata.youtube.com/feeds/api/users/matchymovie</uri>
+		</author>
+		<gd:comments>
+			<gd:feedLink
+				href='http://gdata.youtube.com/feeds/api/videos/4BRdYSmBoqA/comments?v=2'
+				countHint='0' />
+		</gd:comments>
+		<media:group>
+			<media:category label='Sport'
+				scheme='http://gdata.youtube.com/schemas/2007/categories.cat'>Sports</media:category>
+			<media:content
+				url='http://www.youtube.com/v/4BRdYSmBoqA?f=videos&amp;app=youtube_gdata'
+				type='application/x-shockwave-flash' medium='video' isDefault='true'
+				expression='full' duration='5' yt:format='5' />
+			<media:credit role='uploader' scheme='urn:youtube'
+				yt:type='partner'>matchymovie</media:credit>
+			<media:description type='plain'>Fancy some FREE football
+				skills coaching during the school holidays (excluding Christmas)
+				with professional FA Skills Coaches? Check out
+				www.fa-tesco-skills.co.uk ... "FA Tesco Skills" "Frank Lampard" </media:description>
+			<media:keywords>FA Tesco Skills, Frank Lampard</media:keywords>
+			<media:player
+				url='http://www.youtube.com/watch?v=4BRdYSmBoqA&amp;feature=youtube_gdata' />
+			<media:thumbnail url='http://i.ytimg.com/vi/4BRdYSmBoqA/default.jpg'
+				height='90' width='120' time='00:00:02.500' />
+			<media:thumbnail url='http://i.ytimg.com/vi/4BRdYSmBoqA/2.jpg'
+				height='90' width='120' time='00:00:02.500' />
+			<media:thumbnail url='http://i.ytimg.com/vi/4BRdYSmBoqA/1.jpg'
+				height='90' width='120' time='00:00:01.250' />
+			<media:thumbnail url='http://i.ytimg.com/vi/4BRdYSmBoqA/3.jpg'
+				height='90' width='120' time='00:00:03.750' />
+			<media:thumbnail url='http://i.ytimg.com/vi/4BRdYSmBoqA/hqdefault.jpg'
+				height='360' width='480' />
+			<media:title type='plain'>FA Tesco Skills!</media:title>
+			<yt:duration seconds='5' />
+			<yt:uploaded>2009-10-05T08:02:07.000Z</yt:uploaded>
+			<yt:videoid>4BRdYSmBoqA</yt:videoid>
+		</media:group>
+	</entry>
+	<entry gd:etag='W/&quot;A0ENRH47eCp7ImA9WxNXF08.&quot;'>
+		<id>tag:youtube.com,2008:video:3H2M9nerqHY</id>
+		<published>2009-10-05T08:00:34.000Z</published>
+		<updated>2009-10-05T08:01:35.000Z</updated>
+		<category scheme='http://schemas.google.com/g/2005#kind'
+			term='http://gdata.youtube.com/schemas/2007#video' />
+		<category scheme='http://gdata.youtube.com/schemas/2007/categories.cat'
+			term='People' label='People &amp; Blogs' />
+		<category scheme='http://gdata.youtube.com/schemas/2007/keywords.cat'
+			term='john jay' />
+		<category scheme='http://gdata.youtube.com/schemas/2007/keywords.cat'
+			term='marching band' />
+		<category scheme='http://gdata.youtube.com/schemas/2007/keywords.cat'
+			term='bizarro' />
+		<category scheme='http://gdata.youtube.com/schemas/2007/keywords.cat'
+			term='mustangs' />
+		<title>09-05-09, Video 015.MOV</title>
+		<content type='application/x-shockwave-flash'
+			src='http://www.youtube.com/v/3H2M9nerqHY?f=videos&amp;app=youtube_gdata' />
+		<link rel='alternate' type='text/html'
+			href='http://www.youtube.com/watch?v=3H2M9nerqHY&amp;feature=youtube_gdata' />
+		<link rel='http://gdata.youtube.com/schemas/2007#video.responses'
+			type='application/atom+xml'
+			href='http://gdata.youtube.com/feeds/api/videos/3H2M9nerqHY/responses?v=2' />
+		<link rel='http://gdata.youtube.com/schemas/2007#video.related'
+			type='application/atom+xml'
+			href='http://gdata.youtube.com/feeds/api/videos/3H2M9nerqHY/related?v=2' />
+		<link rel='self' type='application/atom+xml'
+			href='http://gdata.youtube.com/feeds/api/videos/3H2M9nerqHY?v=2' />
+		<author>
+			<name>jjmustangband</name>
+			<uri>http://gdata.youtube.com/feeds/api/users/jjmustangband</uri>
+		</author>
+		<gd:comments>
+			<gd:feedLink
+				href='http://gdata.youtube.com/feeds/api/videos/3H2M9nerqHY/comments?v=2'
+				countHint='0' />
+		</gd:comments>
+		<media:group>
+			<media:category label='People &amp; Blogs'
+				scheme='http://gdata.youtube.com/schemas/2007/categories.cat'>People</media:category>
+			<media:content
+				url='http://www.youtube.com/v/3H2M9nerqHY?f=videos&amp;app=youtube_gdata'
+				type='application/x-shockwave-flash' medium='video' isDefault='true'
+				expression='full' duration='61' yt:format='5' />
+			<media:credit role='uploader' scheme='urn:youtube'>jjmustangband</media:credit>
+			<media:description type='plain'>Football Game (vs Del Rio)
+				... "john jay" "marching band" bizarro mustangs </media:description>
+			<media:keywords>john jay, marching band, bizarro, mustangs</media:keywords>
+			<media:player
+				url='http://www.youtube.com/watch?v=3H2M9nerqHY&amp;feature=youtube_gdata' />
+			<media:thumbnail url='http://i.ytimg.com/vi/3H2M9nerqHY/default.jpg'
+				height='90' width='120' time='00:00:30.500' />
+			<media:thumbnail url='http://i.ytimg.com/vi/3H2M9nerqHY/2.jpg'
+				height='90' width='120' time='00:00:30.500' />
+			<media:thumbnail url='http://i.ytimg.com/vi/3H2M9nerqHY/1.jpg'
+				height='90' width='120' time='00:00:15.250' />
+			<media:thumbnail url='http://i.ytimg.com/vi/3H2M9nerqHY/3.jpg'
+				height='90' width='120' time='00:00:45.750' />
+			<media:thumbnail url='http://i.ytimg.com/vi/3H2M9nerqHY/hqdefault.jpg'
+				height='360' width='480' />
+			<media:title type='plain'>09-05-09, Video 015.MOV</media:title>
+			<yt:duration seconds='61' />
+			<yt:uploaded>2009-10-05T08:00:34.000Z</yt:uploaded>
+			<yt:videoid>3H2M9nerqHY</yt:videoid>
+		</media:group>
+	</entry>
+	<entry gd:etag='W/&quot;A04BRX47eCp7ImA9WxNXF08.&quot;'>
+		<id>tag:youtube.com,2008:video:9k5M2WC6TXI</id>
+		<published>2009-10-05T08:00:02.000Z</published>
+		<updated>2009-10-05T08:05:54.000Z</updated>
+		<category scheme='http://schemas.google.com/g/2005#kind'
+			term='http://gdata.youtube.com/schemas/2007#video' />
+		<category scheme='http://gdata.youtube.com/schemas/2007/categories.cat'
+			term='Sports' label='Sport' />
+		<category scheme='http://gdata.youtube.com/schemas/2007/keywords.cat'
+			term='هي' />
+		<category scheme='http://gdata.youtube.com/schemas/2007/keywords.cat'
+			term='اللعب' />
+		<category scheme='http://gdata.youtube.com/schemas/2007/keywords.cat'
+			term='ولى' />
+		<category scheme='http://gdata.youtube.com/schemas/2007/keywords.cat'
+			term='بلاش' />
+		<title>football tricks</title>
+		<content type='application/x-shockwave-flash'
+			src='http://www.youtube.com/v/9k5M2WC6TXI?f=videos&amp;app=youtube_gdata' />
+		<link rel='alternate' type='text/html'
+			href='http://www.youtube.com/watch?v=9k5M2WC6TXI&amp;feature=youtube_gdata' />
+		<link rel='http://gdata.youtube.com/schemas/2007#video.responses'
+			type='application/atom+xml'
+			href='http://gdata.youtube.com/feeds/api/videos/9k5M2WC6TXI/responses?v=2' />
+		<link rel='http://gdata.youtube.com/schemas/2007#video.related'
+			type='application/atom+xml'
+			href='http://gdata.youtube.com/feeds/api/videos/9k5M2WC6TXI/related?v=2' />
+		<link rel='self' type='application/atom+xml'
+			href='http://gdata.youtube.com/feeds/api/videos/9k5M2WC6TXI?v=2' />
+		<author>
+			<name>Eziodefirnzee</name>
+			<uri>http://gdata.youtube.com/feeds/api/users/eziodefirnzee</uri>
+		</author>
+		<gd:comments>
+			<gd:feedLink
+				href='http://gdata.youtube.com/feeds/api/videos/9k5M2WC6TXI/comments?v=2'
+				countHint='0' />
+		</gd:comments>
+		<media:group>
+			<media:category label='Sport'
+				scheme='http://gdata.youtube.com/schemas/2007/categories.cat'>Sports</media:category>
+			<media:content
+				url='http://www.youtube.com/v/9k5M2WC6TXI?f=videos&amp;app=youtube_gdata'
+				type='application/x-shockwave-flash' medium='video' isDefault='true'
+				expression='full' duration='203' yt:format='5' />
+			<media:credit role='uploader' scheme='urn:youtube'>Eziodefirnzee</media:credit>
+			<media:description type='plain' />
+			<media:keywords>هي, اللعب, ولى, بلاش</media:keywords>
+			<media:player
+				url='http://www.youtube.com/watch?v=9k5M2WC6TXI&amp;feature=youtube_gdata' />
+			<media:thumbnail url='http://i.ytimg.com/vi/9k5M2WC6TXI/default.jpg'
+				height='90' width='120' time='00:01:41.500' />
+			<media:thumbnail url='http://i.ytimg.com/vi/9k5M2WC6TXI/2.jpg'
+				height='90' width='120' time='00:01:41.500' />
+			<media:thumbnail url='http://i.ytimg.com/vi/9k5M2WC6TXI/1.jpg'
+				height='90' width='120' time='00:00:50.750' />
+			<media:thumbnail url='http://i.ytimg.com/vi/9k5M2WC6TXI/3.jpg'
+				height='90' width='120' time='00:02:32.250' />
+			<media:thumbnail url='http://i.ytimg.com/vi/9k5M2WC6TXI/hqdefault.jpg'
+				height='360' width='480' />
+			<media:title type='plain'>football tricks</media:title>
+			<yt:duration seconds='203' />
+			<yt:uploaded>2009-10-05T08:00:02.000Z</yt:uploaded>
+			<yt:videoid>9k5M2WC6TXI</yt:videoid>
+		</media:group>
+	</entry>
+	<entry gd:etag='W/&quot;Ck4FR347eCp7ImA9WxNXF04.&quot;'>
+		<id>tag:youtube.com,2008:video:zTZE2xgIREA</id>
+		<published>2009-10-05T07:53:45.000Z</published>
+		<updated>2009-10-05T08:21:56.000Z</updated>
+		<category scheme='http://schemas.google.com/g/2005#kind'
+			term='http://gdata.youtube.com/schemas/2007#video' />
+		<category scheme='http://gdata.youtube.com/schemas/2007/categories.cat'
+			term='Sports' label='Sport' />
+		<category scheme='http://gdata.youtube.com/schemas/2007/keywords.cat'
+			term='Millwall' />
+		<category scheme='http://gdata.youtube.com/schemas/2007/keywords.cat'
+			term='vs' />
+		<category scheme='http://gdata.youtube.com/schemas/2007/keywords.cat'
+			term='Tranmere' />
+		<category scheme='http://gdata.youtube.com/schemas/2007/keywords.cat'
+			term='3.10.2009' />
+		<category scheme='http://gdata.youtube.com/schemas/2007/keywords.cat'
+			term='Coca-Cola' />
+		<category scheme='http://gdata.youtube.com/schemas/2007/keywords.cat'
+			term='Football' />
+		<category scheme='http://gdata.youtube.com/schemas/2007/keywords.cat'
+			term='League' />
+		<category scheme='http://gdata.youtube.com/schemas/2007/keywords.cat'
+			term='One' />
+		<title>Millwall vs Tranmere 3.10.2009 Coca-Cola Football League One</title>
+		<content type='application/x-shockwave-flash'
+			src='http://www.youtube.com/v/zTZE2xgIREA?f=videos&amp;app=youtube_gdata' />
+		<link rel='alternate' type='text/html'
+			href='http://www.youtube.com/watch?v=zTZE2xgIREA&amp;feature=youtube_gdata' />
+		<link rel='http://gdata.youtube.com/schemas/2007#video.responses'
+			type='application/atom+xml'
+			href='http://gdata.youtube.com/feeds/api/videos/zTZE2xgIREA/responses?v=2' />
+		<link rel='http://gdata.youtube.com/schemas/2007#video.related'
+			type='application/atom+xml'
+			href='http://gdata.youtube.com/feeds/api/videos/zTZE2xgIREA/related?v=2' />
+		<link rel='self' type='application/atom+xml'
+			href='http://gdata.youtube.com/feeds/api/videos/zTZE2xgIREA?v=2' />
+		<author>
+			<name>SouthBermondsey</name>
+			<uri>http://gdata.youtube.com/feeds/api/users/southbermondsey</uri>
+		</author>
+		<gd:comments>
+			<gd:feedLink
+				href='http://gdata.youtube.com/feeds/api/videos/zTZE2xgIREA/comments?v=2'
+				countHint='0' />
+		</gd:comments>
+		<media:group>
+			<media:category label='Sport'
+				scheme='http://gdata.youtube.com/schemas/2007/categories.cat'>Sports</media:category>
+			<media:content
+				url='http://www.youtube.com/v/zTZE2xgIREA?f=videos&amp;app=youtube_gdata'
+				type='application/x-shockwave-flash' medium='video' isDefault='true'
+				expression='full' duration='272' yt:format='5' />
+			<media:credit role='uploader' scheme='urn:youtube'>SouthBermondsey</media:credit>
+			<media:description type='plain'>James Henry bagged the
+				first hat-trick of his career as The Lions produced a five-star
+				display to trounce Tranmere Rovers. Kenny Jackett's men roared into
+				a 4-0 lead after just 28 minutes courtesy of Henry (4 and 27mins),
+				Andy Frampton (8mins) and Steve Morison (22mins), with Henry scoring
+				his third - and Millwall's fifth - five minutes from time. To
+				compound a thoroughly miserable afternoon for the visitors,
+				assistant manager Jason McAteer was sent off after 80 minutes, and
+				was followed by ...</media:description>
+			<media:keywords>Millwall, vs, Tranmere, 3.10.2009, Coca-Cola,
+				Football, League, One</media:keywords>
+			<media:player
+				url='http://www.youtube.com/watch?v=zTZE2xgIREA&amp;feature=youtube_gdata' />
+			<media:thumbnail url='http://i.ytimg.com/vi/zTZE2xgIREA/default.jpg'
+				height='90' width='120' time='00:02:16' />
+			<media:thumbnail url='http://i.ytimg.com/vi/zTZE2xgIREA/2.jpg'
+				height='90' width='120' time='00:02:16' />
+			<media:thumbnail url='http://i.ytimg.com/vi/zTZE2xgIREA/1.jpg'
+				height='90' width='120' time='00:01:08' />
+			<media:thumbnail url='http://i.ytimg.com/vi/zTZE2xgIREA/3.jpg'
+				height='90' width='120' time='00:03:24' />
+			<media:thumbnail url='http://i.ytimg.com/vi/zTZE2xgIREA/hqdefault.jpg'
+				height='360' width='480' />
+			<media:title type='plain'>Millwall vs Tranmere 3.10.2009
+				Coca-Cola Football League One</media:title>
+			<yt:aspectRatio>widescreen</yt:aspectRatio>
+			<yt:duration seconds='272' />
+			<yt:uploaded>2009-10-05T07:53:45.000Z</yt:uploaded>
+			<yt:videoid>zTZE2xgIREA</yt:videoid>
+		</media:group>
+	</entry>
+	<entry gd:etag='W/&quot;Ak8MQ347eCp7ImA9WxNXF08.&quot;'>
+		<id>tag:youtube.com,2008:video:2YxxF_g_fy4</id>
+		<published>2009-10-05T07:47:28.000Z</published>
+		<updated>2009-10-05T07:48:02.000Z</updated>
+		<category scheme='http://schemas.google.com/g/2005#kind'
+			term='http://gdata.youtube.com/schemas/2007#video' />
+		<category scheme='http://gdata.youtube.com/schemas/2007/categories.cat'
+			term='People' label='People &amp; Blogs' />
+		<category scheme='http://gdata.youtube.com/schemas/2007/keywords.cat'
+			term='john jay' />
+		<category scheme='http://gdata.youtube.com/schemas/2007/keywords.cat'
+			term='marching band' />
+		<category scheme='http://gdata.youtube.com/schemas/2007/keywords.cat'
+			term='bizarro' />
+		<category scheme='http://gdata.youtube.com/schemas/2007/keywords.cat'
+			term='mustangs' />
+		<title>09-05-09, Video 014.MOV</title>
+		<content type='application/x-shockwave-flash'
+			src='http://www.youtube.com/v/2YxxF_g_fy4?f=videos&amp;app=youtube_gdata' />
+		<link rel='alternate' type='text/html'
+			href='http://www.youtube.com/watch?v=2YxxF_g_fy4&amp;feature=youtube_gdata' />
+		<link rel='http://gdata.youtube.com/schemas/2007#video.responses'
+			type='application/atom+xml'
+			href='http://gdata.youtube.com/feeds/api/videos/2YxxF_g_fy4/responses?v=2' />
+		<link rel='http://gdata.youtube.com/schemas/2007#video.related'
+			type='application/atom+xml'
+			href='http://gdata.youtube.com/feeds/api/videos/2YxxF_g_fy4/related?v=2' />
+		<link rel='self' type='application/atom+xml'
+			href='http://gdata.youtube.com/feeds/api/videos/2YxxF_g_fy4?v=2' />
+		<author>
+			<name>jjmustangband</name>
+			<uri>http://gdata.youtube.com/feeds/api/users/jjmustangband</uri>
+		</author>
+		<gd:comments>
+			<gd:feedLink
+				href='http://gdata.youtube.com/feeds/api/videos/2YxxF_g_fy4/comments?v=2'
+				countHint='0' />
+		</gd:comments>
+		<media:group>
+			<media:category label='People &amp; Blogs'
+				scheme='http://gdata.youtube.com/schemas/2007/categories.cat'>People</media:category>
+			<media:content
+				url='http://www.youtube.com/v/2YxxF_g_fy4?f=videos&amp;app=youtube_gdata'
+				type='application/x-shockwave-flash' medium='video' isDefault='true'
+				expression='full' duration='27' yt:format='5' />
+			<media:credit role='uploader' scheme='urn:youtube'>jjmustangband</media:credit>
+			<media:description type='plain'>Football Game (vs Del Rio)
+				... "john jay" "marching band" bizarro mustangs </media:description>
+			<media:keywords>john jay, marching band, bizarro, mustangs</media:keywords>
+			<media:player
+				url='http://www.youtube.com/watch?v=2YxxF_g_fy4&amp;feature=youtube_gdata' />
+			<media:thumbnail url='http://i.ytimg.com/vi/2YxxF_g_fy4/default.jpg'
+				height='90' width='120' time='00:00:13.500' />
+			<media:thumbnail url='http://i.ytimg.com/vi/2YxxF_g_fy4/2.jpg'
+				height='90' width='120' time='00:00:13.500' />
+			<media:thumbnail url='http://i.ytimg.com/vi/2YxxF_g_fy4/1.jpg'
+				height='90' width='120' time='00:00:06.750' />
+			<media:thumbnail url='http://i.ytimg.com/vi/2YxxF_g_fy4/3.jpg'
+				height='90' width='120' time='00:00:20.250' />
+			<media:thumbnail url='http://i.ytimg.com/vi/2YxxF_g_fy4/hqdefault.jpg'
+				height='360' width='480' />
+			<media:title type='plain'>09-05-09, Video 014.MOV</media:title>
+			<yt:duration seconds='27' />
+			<yt:uploaded>2009-10-05T07:47:28.000Z</yt:uploaded>
+			<yt:videoid>2YxxF_g_fy4</yt:videoid>
+		</media:group>
+	</entry>
+	<entry gd:etag='W/&quot;A0IERn47eCp7ImA9WxNXF08.&quot;'>
+		<id>tag:youtube.com,2008:video:1St0nml6WkM</id>
+		<published>2009-10-05T07:42:25.000Z</published>
+		<updated>2009-10-05T07:58:27.000Z</updated>
+		<category scheme='http://schemas.google.com/g/2005#kind'
+			term='http://gdata.youtube.com/schemas/2007#video' />
+		<category scheme='http://gdata.youtube.com/schemas/2007/categories.cat'
+			term='Sports' label='Sport' />
+		<category scheme='http://gdata.youtube.com/schemas/2007/keywords.cat'
+			term='City' />
+		<category scheme='http://gdata.youtube.com/schemas/2007/keywords.cat'
+			term='vs' />
+		<category scheme='http://gdata.youtube.com/schemas/2007/keywords.cat'
+			term='Country' />
+		<category scheme='http://gdata.youtube.com/schemas/2007/keywords.cat'
+			term='1992' />
+		<category scheme='http://gdata.youtube.com/schemas/2007/keywords.cat'
+			term='Sydney' />
+		<category scheme='http://gdata.youtube.com/schemas/2007/keywords.cat'
+			term='Football' />
+		<category scheme='http://gdata.youtube.com/schemas/2007/keywords.cat'
+			term='Stadium' />
+		<title>City vs Country 1992 Sydney Football Stadium</title>
+		<content type='application/x-shockwave-flash'
+			src='http://www.youtube.com/v/1St0nml6WkM?f=videos&amp;app=youtube_gdata' />
+		<link rel='alternate' type='text/html'
+			href='http://www.youtube.com/watch?v=1St0nml6WkM&amp;feature=youtube_gdata' />
+		<link rel='http://gdata.youtube.com/schemas/2007#video.responses'
+			type='application/atom+xml'
+			href='http://gdata.youtube.com/feeds/api/videos/1St0nml6WkM/responses?v=2' />
+		<link rel='http://gdata.youtube.com/schemas/2007#video.related'
+			type='application/atom+xml'
+			href='http://gdata.youtube.com/feeds/api/videos/1St0nml6WkM/related?v=2' />
+		<link rel='self' type='application/atom+xml'
+			href='http://gdata.youtube.com/feeds/api/videos/1St0nml6WkM?v=2' />
+		<author>
+			<name>TonyTai2009</name>
+			<uri>http://gdata.youtube.com/feeds/api/users/tonytai2009</uri>
+		</author>
+		<gd:comments>
+			<gd:feedLink
+				href='http://gdata.youtube.com/feeds/api/videos/1St0nml6WkM/comments?v=2'
+				countHint='0' />
+		</gd:comments>
+		<media:group>
+			<media:category label='Sport'
+				scheme='http://gdata.youtube.com/schemas/2007/categories.cat'>Sports</media:category>
+			<media:content
+				url='http://www.youtube.com/v/1St0nml6WkM?f=videos&amp;app=youtube_gdata'
+				type='application/x-shockwave-flash' medium='video' isDefault='true'
+				expression='full' duration='112' yt:format='5' />
+			<media:credit role='uploader' scheme='urn:youtube'>TonyTai2009</media:credit>
+			<media:description type='plain' />
+			<media:keywords>City, vs, Country, 1992, Sydney, Football, Stadium</media:keywords>
+			<media:player
+				url='http://www.youtube.com/watch?v=1St0nml6WkM&amp;feature=youtube_gdata' />
+			<media:thumbnail url='http://i.ytimg.com/vi/1St0nml6WkM/default.jpg'
+				height='90' width='120' time='00:00:56' />
+			<media:thumbnail url='http://i.ytimg.com/vi/1St0nml6WkM/2.jpg'
+				height='90' width='120' time='00:00:56' />
+			<media:thumbnail url='http://i.ytimg.com/vi/1St0nml6WkM/1.jpg'
+				height='90' width='120' time='00:00:28' />
+			<media:thumbnail url='http://i.ytimg.com/vi/1St0nml6WkM/3.jpg'
+				height='90' width='120' time='00:01:24' />
+			<media:thumbnail url='http://i.ytimg.com/vi/1St0nml6WkM/hqdefault.jpg'
+				height='360' width='480' />
+			<media:title type='plain'>City vs Country 1992 Sydney Football
+				Stadium</media:title>
+			<yt:duration seconds='112' />
+			<yt:uploaded>2009-10-05T07:42:25.000Z</yt:uploaded>
+			<yt:videoid>1St0nml6WkM</yt:videoid>
+		</media:group>
+	</entry>
+	<entry gd:etag='W/&quot;AkIHRH47eCp7ImA9WxNXF08.&quot;'>
+		<id>tag:youtube.com,2008:video:IjOSL5LH5H0</id>
+		<published>2009-10-05T07:41:45.000Z</published>
+		<updated>2009-10-05T07:42:15.000Z</updated>
+		<category scheme='http://schemas.google.com/g/2005#kind'
+			term='http://gdata.youtube.com/schemas/2007#video' />
+		<category scheme='http://gdata.youtube.com/schemas/2007/categories.cat'
+			term='People' label='People &amp; Blogs' />
+		<category scheme='http://gdata.youtube.com/schemas/2007/keywords.cat'
+			term='john jay' />
+		<category scheme='http://gdata.youtube.com/schemas/2007/keywords.cat'
+			term='marching band' />
+		<category scheme='http://gdata.youtube.com/schemas/2007/keywords.cat'
+			term='bizarro' />
+		<category scheme='http://gdata.youtube.com/schemas/2007/keywords.cat'
+			term='mustangs' />
+		<title>09-05-09, Video 013.MOV</title>
+		<content type='application/x-shockwave-flash'
+			src='http://www.youtube.com/v/IjOSL5LH5H0?f=videos&amp;app=youtube_gdata' />
+		<link rel='alternate' type='text/html'
+			href='http://www.youtube.com/watch?v=IjOSL5LH5H0&amp;feature=youtube_gdata' />
+		<link rel='http://gdata.youtube.com/schemas/2007#video.responses'
+			type='application/atom+xml'
+			href='http://gdata.youtube.com/feeds/api/videos/IjOSL5LH5H0/responses?v=2' />
+		<link rel='http://gdata.youtube.com/schemas/2007#video.related'
+			type='application/atom+xml'
+			href='http://gdata.youtube.com/feeds/api/videos/IjOSL5LH5H0/related?v=2' />
+		<link rel='self' type='application/atom+xml'
+			href='http://gdata.youtube.com/feeds/api/videos/IjOSL5LH5H0?v=2' />
+		<author>
+			<name>jjmustangband</name>
+			<uri>http://gdata.youtube.com/feeds/api/users/jjmustangband</uri>
+		</author>
+		<gd:comments>
+			<gd:feedLink
+				href='http://gdata.youtube.com/feeds/api/videos/IjOSL5LH5H0/comments?v=2'
+				countHint='0' />
+		</gd:comments>
+		<media:group>
+			<media:category label='People &amp; Blogs'
+				scheme='http://gdata.youtube.com/schemas/2007/categories.cat'>People</media:category>
+			<media:content
+				url='http://www.youtube.com/v/IjOSL5LH5H0?f=videos&amp;app=youtube_gdata'
+				type='application/x-shockwave-flash' medium='video' isDefault='true'
+				expression='full' duration='20' yt:format='5' />
+			<media:credit role='uploader' scheme='urn:youtube'>jjmustangband</media:credit>
+			<media:description type='plain'>Football Game (vs Del Rio)
+				... "john jay" "marching band" bizarro mustangs </media:description>
+			<media:keywords>john jay, marching band, bizarro, mustangs</media:keywords>
+			<media:player
+				url='http://www.youtube.com/watch?v=IjOSL5LH5H0&amp;feature=youtube_gdata' />
+			<media:thumbnail url='http://i.ytimg.com/vi/IjOSL5LH5H0/default.jpg'
+				height='90' width='120' time='00:00:10' />
+			<media:thumbnail url='http://i.ytimg.com/vi/IjOSL5LH5H0/2.jpg'
+				height='90' width='120' time='00:00:10' />
+			<media:thumbnail url='http://i.ytimg.com/vi/IjOSL5LH5H0/1.jpg'
+				height='90' width='120' time='00:00:05' />
+			<media:thumbnail url='http://i.ytimg.com/vi/IjOSL5LH5H0/3.jpg'
+				height='90' width='120' time='00:00:15' />
+			<media:thumbnail url='http://i.ytimg.com/vi/IjOSL5LH5H0/hqdefault.jpg'
+				height='360' width='480' />
+			<media:title type='plain'>09-05-09, Video 013.MOV</media:title>
+			<yt:duration seconds='20' />
+			<yt:uploaded>2009-10-05T07:41:45.000Z</yt:uploaded>
+			<yt:videoid>IjOSL5LH5H0</yt:videoid>
+		</media:group>
+	</entry>
+	<entry gd:etag='W/&quot;Ak8FRn47eCp7ImA9WxNXF08.&quot;'>
+		<id>tag:youtube.com,2008:video:wdhY3oe7vpY</id>
+		<published>2009-10-05T07:40:29.000Z</published>
+		<updated>2009-10-05T07:46:57.000Z</updated>
+		<category scheme='http://schemas.google.com/g/2005#kind'
+			term='http://gdata.youtube.com/schemas/2007#video' />
+		<category scheme='http://gdata.youtube.com/schemas/2007/categories.cat'
+			term='Sports' label='Sport' />
+		<category scheme='http://gdata.youtube.com/schemas/2007/keywords.cat'
+			term='Football' />
+		<category scheme='http://gdata.youtube.com/schemas/2007/keywords.cat'
+			term='Fights' />
+		<title>Football Fights</title>
+		<content type='application/x-shockwave-flash'
+			src='http://www.youtube.com/v/wdhY3oe7vpY?f=videos&amp;app=youtube_gdata' />
+		<link rel='alternate' type='text/html'
+			href='http://www.youtube.com/watch?v=wdhY3oe7vpY&amp;feature=youtube_gdata' />
+		<link rel='http://gdata.youtube.com/schemas/2007#video.responses'
+			type='application/atom+xml'
+			href='http://gdata.youtube.com/feeds/api/videos/wdhY3oe7vpY/responses?v=2' />
+		<link rel='http://gdata.youtube.com/schemas/2007#video.related'
+			type='application/atom+xml'
+			href='http://gdata.youtube.com/feeds/api/videos/wdhY3oe7vpY/related?v=2' />
+		<link rel='self' type='application/atom+xml'
+			href='http://gdata.youtube.com/feeds/api/videos/wdhY3oe7vpY?v=2' />
+		<author>
+			<name>Eziodefirnzee</name>
+			<uri>http://gdata.youtube.com/feeds/api/users/eziodefirnzee</uri>
+		</author>
+		<gd:comments>
+			<gd:feedLink
+				href='http://gdata.youtube.com/feeds/api/videos/wdhY3oe7vpY/comments?v=2'
+				countHint='0' />
+		</gd:comments>
+		<media:group>
+			<media:category label='Sport'
+				scheme='http://gdata.youtube.com/schemas/2007/categories.cat'>Sports</media:category>
+			<media:content
+				url='http://www.youtube.com/v/wdhY3oe7vpY?f=videos&amp;app=youtube_gdata'
+				type='application/x-shockwave-flash' medium='video' isDefault='true'
+				expression='full' duration='270' yt:format='5' />
+			<media:credit role='uploader' scheme='urn:youtube'>Eziodefirnzee</media:credit>
+			<media:description type='plain'>football fights</media:description>
+			<media:keywords>Football, Fights</media:keywords>
+			<media:player
+				url='http://www.youtube.com/watch?v=wdhY3oe7vpY&amp;feature=youtube_gdata' />
+			<media:thumbnail url='http://i.ytimg.com/vi/wdhY3oe7vpY/default.jpg'
+				height='90' width='120' time='00:02:15' />
+			<media:thumbnail url='http://i.ytimg.com/vi/wdhY3oe7vpY/2.jpg'
+				height='90' width='120' time='00:02:15' />
+			<media:thumbnail url='http://i.ytimg.com/vi/wdhY3oe7vpY/1.jpg'
+				height='90' width='120' time='00:01:07.500' />
+			<media:thumbnail url='http://i.ytimg.com/vi/wdhY3oe7vpY/3.jpg'
+				height='90' width='120' time='00:03:22.500' />
+			<media:thumbnail url='http://i.ytimg.com/vi/wdhY3oe7vpY/hqdefault.jpg'
+				height='360' width='480' />
+			<media:title type='plain'>Football Fights</media:title>
+			<yt:duration seconds='270' />
+			<yt:uploaded>2009-10-05T07:40:29.000Z</yt:uploaded>
+			<yt:videoid>wdhY3oe7vpY</yt:videoid>
+		</media:group>
+	</entry>
+	<entry gd:etag='W/&quot;AkQEQX47eCp7ImA9WxNXF08.&quot;'>
+		<id>tag:youtube.com,2008:video:VEJ_faisl5o</id>
+		<published>2009-10-05T07:37:33.000Z</published>
+		<updated>2009-10-05T07:38:20.000Z</updated>
+		<category scheme='http://schemas.google.com/g/2005#kind'
+			term='http://gdata.youtube.com/schemas/2007#video' />
+		<category scheme='http://gdata.youtube.com/schemas/2007/categories.cat'
+			term='People' label='People &amp; Blogs' />
+		<category scheme='http://gdata.youtube.com/schemas/2007/keywords.cat'
+			term='john jay' />
+		<category scheme='http://gdata.youtube.com/schemas/2007/keywords.cat'
+			term='marching band' />
+		<category scheme='http://gdata.youtube.com/schemas/2007/keywords.cat'
+			term='bizarro' />
+		<category scheme='http://gdata.youtube.com/schemas/2007/keywords.cat'
+			term='mustangs' />
+		<title>09-05-09, Video 012.MOV</title>
+		<content type='application/x-shockwave-flash'
+			src='http://www.youtube.com/v/VEJ_faisl5o?f=videos&amp;app=youtube_gdata' />
+		<link rel='alternate' type='text/html'
+			href='http://www.youtube.com/watch?v=VEJ_faisl5o&amp;feature=youtube_gdata' />
+		<link rel='http://gdata.youtube.com/schemas/2007#video.responses'
+			type='application/atom+xml'
+			href='http://gdata.youtube.com/feeds/api/videos/VEJ_faisl5o/responses?v=2' />
+		<link rel='http://gdata.youtube.com/schemas/2007#video.related'
+			type='application/atom+xml'
+			href='http://gdata.youtube.com/feeds/api/videos/VEJ_faisl5o/related?v=2' />
+		<link rel='self' type='application/atom+xml'
+			href='http://gdata.youtube.com/feeds/api/videos/VEJ_faisl5o?v=2' />
+		<author>
+			<name>jjmustangband</name>
+			<uri>http://gdata.youtube.com/feeds/api/users/jjmustangband</uri>
+		</author>
+		<gd:comments>
+			<gd:feedLink
+				href='http://gdata.youtube.com/feeds/api/videos/VEJ_faisl5o/comments?v=2'
+				countHint='0' />
+		</gd:comments>
+		<media:group>
+			<media:category label='People &amp; Blogs'
+				scheme='http://gdata.youtube.com/schemas/2007/categories.cat'>People</media:category>
+			<media:content
+				url='http://www.youtube.com/v/VEJ_faisl5o?f=videos&amp;app=youtube_gdata'
+				type='application/x-shockwave-flash' medium='video' isDefault='true'
+				expression='full' duration='52' yt:format='5' />
+			<media:credit role='uploader' scheme='urn:youtube'>jjmustangband</media:credit>
+			<media:description type='plain'>Football Game (vs Del Rio)
+				... "john jay" "marching band" bizarro mustangs </media:description>
+			<media:keywords>john jay, marching band, bizarro, mustangs</media:keywords>
+			<media:player
+				url='http://www.youtube.com/watch?v=VEJ_faisl5o&amp;feature=youtube_gdata' />
+			<media:thumbnail url='http://i.ytimg.com/vi/VEJ_faisl5o/default.jpg'
+				height='90' width='120' time='00:00:26' />
+			<media:thumbnail url='http://i.ytimg.com/vi/VEJ_faisl5o/2.jpg'
+				height='90' width='120' time='00:00:26' />
+			<media:thumbnail url='http://i.ytimg.com/vi/VEJ_faisl5o/1.jpg'
+				height='90' width='120' time='00:00:13' />
+			<media:thumbnail url='http://i.ytimg.com/vi/VEJ_faisl5o/3.jpg'
+				height='90' width='120' time='00:00:39' />
+			<media:thumbnail url='http://i.ytimg.com/vi/VEJ_faisl5o/hqdefault.jpg'
+				height='360' width='480' />
+			<media:title type='plain'>09-05-09, Video 012.MOV</media:title>
+			<yt:duration seconds='52' />
+			<yt:uploaded>2009-10-05T07:37:33.000Z</yt:uploaded>
+			<yt:videoid>VEJ_faisl5o</yt:videoid>
+		</media:group>
+	</entry>
+	<entry gd:etag='W/&quot;AkEDSX47eCp7ImA9WxNXF08.&quot;'>
+		<id>tag:youtube.com,2008:video:GlNLipULR4g</id>
+		<published>2009-10-05T07:33:26.000Z</published>
+		<updated>2009-10-05T07:44:38.000Z</updated>
+		<category scheme='http://schemas.google.com/g/2005#kind'
+			term='http://gdata.youtube.com/schemas/2007#video' />
+		<category scheme='http://gdata.youtube.com/schemas/2007/categories.cat'
+			term='Games' label='Gaming' />
+		<category scheme='http://gdata.youtube.com/schemas/2007/keywords.cat'
+			term='Modern' />
+		<category scheme='http://gdata.youtube.com/schemas/2007/keywords.cat'
+			term='warfare' />
+		<category scheme='http://gdata.youtube.com/schemas/2007/keywords.cat'
+			term='football' />
+		<category scheme='http://gdata.youtube.com/schemas/2007/keywords.cat'
+			term='trailer' />
+		<category scheme='http://gdata.youtube.com/schemas/2007/keywords.cat'
+			term='november' />
+		<category scheme='http://gdata.youtube.com/schemas/2007/keywords.cat'
+			term='10' />
+		<category scheme='http://gdata.youtube.com/schemas/2007/keywords.cat'
+			term='Infamy' />
+		<category scheme='http://gdata.youtube.com/schemas/2007/keywords.cat'
+			term='infinity' />
+		<category scheme='http://gdata.youtube.com/schemas/2007/keywords.cat'
+			term='ward' />
+		<category scheme='http://gdata.youtube.com/schemas/2007/keywords.cat'
+			term='activision' />
+		<category scheme='http://gdata.youtube.com/schemas/2007/keywords.cat'
+			term='robert' />
+		<category scheme='http://gdata.youtube.com/schemas/2007/keywords.cat'
+			term='bowling' />
+		<category scheme='http://gdata.youtube.com/schemas/2007/keywords.cat'
+			term='soap' />
+		<category scheme='http://gdata.youtube.com/schemas/2007/keywords.cat'
+			term='ghost' />
+		<category scheme='http://gdata.youtube.com/schemas/2007/keywords.cat'
+			term='multiplayer' />
+		<category scheme='http://gdata.youtube.com/schemas/2007/keywords.cat'
+			term='singleplayer' />
+		<category scheme='http://gdata.youtube.com/schemas/2007/keywords.cat'
+			term='campaign' />
+		<category scheme='http://gdata.youtube.com/schemas/2007/keywords.cat'
+			term='special' />
+		<category scheme='http://gdata.youtube.com/schemas/2007/keywords.cat'
+			term='forces' />
+		<category scheme='http://gdata.youtube.com/schemas/2007/keywords.cat'
+			term='ops' />
+		<category scheme='http://gdata.youtube.com/schemas/2007/keywords.cat'
+			term='veteran' />
+		<category scheme='http://gdata.youtube.com/schemas/2007/keywords.cat'
+			term='hard' />
+		<category scheme='http://gdata.youtube.com/schemas/2007/keywords.cat'
+			term='easy' />
+		<category scheme='http://gdata.youtube.com/schemas/2007/keywords.cat'
+			term='hardened' />
+		<category scheme='http://gdata.youtube.com/schemas/2007/keywords.cat'
+			term='mode' />
+		<title>Modern Warfare 2 Infamy Trailer Sunday Night Football</title>
+		<content type='application/x-shockwave-flash'
+			src='http://www.youtube.com/v/GlNLipULR4g?f=videos&amp;app=youtube_gdata' />
+		<link rel='alternate' type='text/html'
+			href='http://www.youtube.com/watch?v=GlNLipULR4g&amp;feature=youtube_gdata' />
+		<link rel='http://gdata.youtube.com/schemas/2007#video.responses'
+			type='application/atom+xml'
+			href='http://gdata.youtube.com/feeds/api/videos/GlNLipULR4g/responses?v=2' />
+		<link rel='http://gdata.youtube.com/schemas/2007#video.related'
+			type='application/atom+xml'
+			href='http://gdata.youtube.com/feeds/api/videos/GlNLipULR4g/related?v=2' />
+		<link rel='self' type='application/atom+xml'
+			href='http://gdata.youtube.com/feeds/api/videos/GlNLipULR4g?v=2' />
+		<author>
+			<name>xld3000</name>
+			<uri>http://gdata.youtube.com/feeds/api/users/xld3000</uri>
+		</author>
+		<gd:comments>
+			<gd:feedLink
+				href='http://gdata.youtube.com/feeds/api/videos/GlNLipULR4g/comments?v=2'
+				countHint='0' />
+		</gd:comments>
+		<media:group>
+			<media:category label='Gaming'
+				scheme='http://gdata.youtube.com/schemas/2007/categories.cat'>Games</media:category>
+			<media:content
+				url='http://www.youtube.com/v/GlNLipULR4g?f=videos&amp;app=youtube_gdata'
+				type='application/x-shockwave-flash' medium='video' isDefault='true'
+				expression='full' duration='130' yt:format='5' />
+			<media:credit role='uploader' scheme='urn:youtube'>xld3000</media:credit>
+			<media:description type='plain'>Trailer that ran during
+				Sunday night football</media:description>
+			<media:keywords>Modern, warfare, football, trailer, november, 10,
+				Infamy, infinity, ward, activision, robert, bowling, soap, ghost,
+				multiplayer, singleplayer, campaign, special, forces, ops, veteran,
+				hard, easy, hardened, mode</media:keywords>
+			<media:player
+				url='http://www.youtube.com/watch?v=GlNLipULR4g&amp;feature=youtube_gdata' />
+			<media:thumbnail url='http://i.ytimg.com/vi/GlNLipULR4g/default.jpg'
+				height='90' width='120' time='00:01:05' />
+			<media:thumbnail url='http://i.ytimg.com/vi/GlNLipULR4g/2.jpg'
+				height='90' width='120' time='00:01:05' />
+			<media:thumbnail url='http://i.ytimg.com/vi/GlNLipULR4g/1.jpg'
+				height='90' width='120' time='00:00:32.500' />
+			<media:thumbnail url='http://i.ytimg.com/vi/GlNLipULR4g/3.jpg'
+				height='90' width='120' time='00:01:37.500' />
+			<media:thumbnail url='http://i.ytimg.com/vi/GlNLipULR4g/hqdefault.jpg'
+				height='360' width='480' />
+			<media:title type='plain'>Modern Warfare 2 Infamy Trailer Sunday
+				Night Football</media:title>
+			<yt:aspectRatio>widescreen</yt:aspectRatio>
+			<yt:duration seconds='130' />
+			<yt:uploaded>2009-10-05T07:33:26.000Z</yt:uploaded>
+			<yt:videoid>GlNLipULR4g</yt:videoid>
+		</media:group>
+	</entry>
+</feed>

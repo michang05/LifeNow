@@ -1,0 +1,797 @@
+package com.lifenow;
+
+import java.io.BufferedInputStream;
+import java.io.InputStream;
+import java.net.URL;
+import java.net.URLConnection;
+import java.util.ArrayList;
+
+import twitter4j.TwitterException;
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
+import android.os.Bundle;
+import android.os.Handler;
+import android.text.util.Linkify;
+import android.view.Menu;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.Button;
+import android.widget.GridView;
+import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.ProgressBar;
+import android.widget.TabHost;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.lifenow.daypi.APIHelper;
+import com.lifenow.daypi.TwitterUtil;
+import com.lifenow.pojo.Article;
+import com.lifenow.pojo.Topic;
+import com.lifenow.pojo.Video;
+import com.lifenow.utils.LifeNowUtils;
+import com.lifenow.utils.ThumbnailAdapter;
+
+public class MainActivity extends Activity implements TabHost.TabContentFactory {
+
+	// private String[] sources = { "00ztgIm6N46jg", "0dmgbH7fqLbMT",
+	// "04Xt71JaPXcaH", "0bYNckA4Bxc6A", "0aFS1Gt4xu6Ih",
+	// "02geckG8IH1d4", "0flCaCM3LkeiV", "0blKbZP140g1Z", "01DFbf7cnK4sc",
+	// "0csee4fg3o5i4", "0g0BarQeCPe2i",
+	// "0eAceMCfZg0Zz", "0gTcffMcyQ1Ax", "0cZg7ph3O9eeF", "0083e6H4MndJP" };
+
+	private ListView list;
+	private ListView videoListView;
+	private GridView topicsGrid;
+	private View articlesFooter;
+	private ArrayList<Article> articlesList = new ArrayList<Article>();
+	private ArrayList<Topic> topicsList = new ArrayList<Topic>();
+	private ArrayList<Video> videoList = new ArrayList<Video>();
+
+	private static final int VIEW_ARTICLES = 0;
+	private static final int VIEW_TOPICS = 1;
+	private static final int VIEW_VIDEOS = 2;
+
+	private int articlesListOffset;
+	private int topicsListOffset;
+	private int videoListOffset = 1;
+
+	private int currentView;
+	private SharedPreferences pref;
+	private String sources;
+
+	private static final int[] IMAGE_IDS = { R.id.sourceIcon };
+	private static final int[] VIDEO_THUMB_IDS = { R.id.thumb };
+
+	/** Called when the activity is first created. */
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.main);
+
+		// RememberMePreferences.load(this);
+		// if (!RememberMePreferences.getUserName().equals("")
+		// && !RememberMePreferences.getPassword().equals("")) {
+		// try {
+		// TwitterUtil.getInstance().init(this);
+		// } catch (TwitterException e) {
+		// // TODO Auto-generated catch block
+		// e.printStackTrace();
+		// }
+		// }
+
+		pref = getSharedPreferences("lifenow", Activity.MODE_PRIVATE);
+		sources = pref
+				.getString(
+						"sources",
+						"00ztgIm6N46jg,0dmgbH7fqLbMT,04Xt71JaPXcaH,0bYNckA4Bxc6A,0aFS1Gt4xu6Ih,02geckG8IH1d4,0flCaCM3LkeiV,0blKbZP140g1Z,01DFbf7cnK4sc,0csee4fg3o5i4,0g0BarQeCPe2i,0eAceMCfZg0Zz,0gTcffMcyQ1Ax,0cZg7ph3O9eeF,0083e6H4MndJP");
+
+		final TabHost tabHost = (TabHost) findViewById(R.id.result);
+		tabHost.setup();
+		tabHost.setPadding(2, 5, 2, 0);
+
+		tabHost.addTab(tabHost
+				.newTabSpec("Articles")
+				.setIndicator("Articles",
+						getResources().getDrawable(R.drawable.articles))
+				.setContent(this));
+		tabHost.addTab(tabHost
+				.newTabSpec("Topics")
+				.setIndicator("Topics",
+						getResources().getDrawable(R.drawable.quotes))
+				.setContent(this));
+		tabHost.addTab(tabHost
+				.newTabSpec("Videos")
+				.setIndicator("Videos",
+						getResources().getDrawable(R.drawable.videos))
+				.setContent(this));
+
+	}
+
+	@Override
+	public View createTabContent(String indicator) {
+		if (indicator.equals("Articles")) {
+			currentView = VIEW_ARTICLES;
+
+			View layout = getLayoutInflater().inflate(R.layout.articlelist,
+					null);
+			articlesFooter = getLayoutInflater().inflate(R.layout.itemfooter,
+					null);
+			initializeArticlesListView(layout, articlesFooter);
+
+			new LoadArticlesTask(articlesFooter).execute();
+
+			return layout;
+		} else if (indicator.equals("Topics")) {
+			currentView = VIEW_TOPICS;
+
+			View layout = getLayoutInflater()
+					.inflate(R.layout.topicslist, null);
+			initializeTopicsGrid(layout);
+
+			new LoadTopicsTask().execute();
+
+			return layout;
+		} else if (indicator.equals("Videos")) {
+			currentView = VIEW_VIDEOS;
+			articlesFooter = getLayoutInflater().inflate(R.layout.itemfooter,
+					null);
+
+			final View layout = getLayoutInflater().inflate(R.layout.videolist,
+					null);
+			videoListView = (ListView) layout.findViewById(R.id.list);
+			videoListView.setCacheColorHint(0);
+			videoListView.setOnItemClickListener(new OnItemClickListener() {
+				public void onItemClick(AdapterView<?> arg0, View arg1,
+						int position, long arg3) {
+					final Video video = (Video) arg0
+							.getItemAtPosition(position);
+					final String[] menuItems = new String[] {
+							"Watch on YouTube", "Share via SMS",
+							"Share via Email", "Share via Twitter" };
+					new AlertDialog.Builder(MainActivity.this)
+							.setTitle("Choose Action")
+							.setItems(menuItems,
+									new DialogInterface.OnClickListener() {
+										public void onClick(
+												DialogInterface dialog,
+												final int which) {
+											switch (which) {
+											case 0:
+												LifeNowUtils.openBrowser(
+														MainActivity.this,
+														video.getUrl());
+												break;
+											case 1:
+												new SendSMSTask().execute(
+														video.getUrl(),
+														video.getTitle());
+												break;
+											case 2:
+												new SendEmailTask().execute(
+														video.getUrl(),
+														video.getTitle());
+												break;
+											case 3:
+												sendTwitter(video);
+												break;
+											}
+										}
+
+									}).setNegativeButton("Cancel", null)
+							.create().show();
+
+				}
+			});
+
+			final Button moreButton = (Button) articlesFooter
+					.findViewById(R.id.more);
+			final ProgressBar progressBar = (ProgressBar) articlesFooter
+					.findViewById(R.id.progressBar);
+			moreButton
+					.setOnClickListener(new android.view.View.OnClickListener() {
+						public void onClick(View v) {
+							// load more
+							moreButton.setVisibility(View.GONE);
+							progressBar.setVisibility(View.VISIBLE);
+							new LoadVideoTask(articlesFooter).execute();
+						}
+					});
+
+			videoListView.addFooterView(articlesFooter);
+
+			ThumbnailAdapter thumbs = new ThumbnailAdapter(this,
+					new VideoListAdapter(this, videoList),
+					((Application) getApplication()).getCache(),
+					VIDEO_THUMB_IDS);
+
+			videoListView.setAdapter(thumbs);
+			new LoadVideoTask(articlesFooter).execute();
+
+			return layout;
+
+		}
+
+		TextView tv = new TextView(this);
+		tv.setText("Testing");
+		return tv;
+	}
+
+	private void initializeTopicsGrid(View layout) {
+		topicsGrid = (GridView) layout.findViewById(R.id.topics);
+		topicsGrid.setOnItemClickListener(new OnItemClickListener() {
+			@Override
+			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+					long arg3) {
+				final View topicsPreview = getLayoutInflater().inflate(
+						R.layout.topicspreview, null);
+				final Topic topic = (Topic) arg0.getItemAtPosition(arg2);
+
+				final ProgressBar indicator = (ProgressBar) topicsPreview
+						.findViewById(R.id.loadIndicator);
+
+				final ImageView topicIcon = (ImageView) topicsPreview
+						.findViewById(R.id.topicIcon);
+				
+				
+				topicIcon.setImageResource(R.drawable.largeimageholder);
+				final Handler handler = new Handler();
+
+				new Thread() {
+					public void run() {
+						Bitmap bm = null;
+						try {
+							URL imageURL = new URL(topic.getImage()
+									.getThumbURL());
+							URLConnection conn = imageURL.openConnection();
+							conn.connect();
+							InputStream is2 = conn.getInputStream();
+							BufferedInputStream bis = new BufferedInputStream(
+									is2, 16384);
+							bm = BitmapFactory.decodeStream(bis);
+							bis.close();
+							is2.close();
+						} catch (Exception e) {
+							bm = null;
+						}
+
+						final Bitmap imageBitmap = bm;
+						handler.post(new Runnable() {
+							@Override
+							public void run() {
+								if (imageBitmap != null) {
+									topicIcon.setImageBitmap(imageBitmap);
+
+								} else {
+									topicIcon
+											.setImageResource(R.drawable.largeimageholder);
+								}
+
+								topicIcon.invalidate();
+								topicIcon.setVisibility(View.VISIBLE);
+								indicator.setVisibility(View.GONE);
+
+							}
+						});
+					};
+				}.start();
+
+				final TextView topicName = (TextView) topicsPreview
+						.findViewById(R.id.topicName);
+				topicName.setText(topic.getName());
+
+				final TextView topicCaption = (TextView) topicsPreview
+						.findViewById(R.id.topicCaption);
+				topicCaption.setText(topic.getImage().getCaption());
+				final TextView urlTopic = (TextView) topicsPreview
+						.findViewById(R.id.topicUrl);
+				urlTopic.setText(topic.getImage().getDayLifeURL());
+				Linkify.addLinks(urlTopic, Linkify.ALL);
+				new AlertDialog.Builder(MainActivity.this)
+						.setView(topicsPreview)
+						.setNegativeButton("Close", null).create().show();
+			}
+		});
+		ThumbnailAdapter thumbs = new ThumbnailAdapter(this,
+				new TopicsListAdapter(this, topicsList),
+				((Application) getApplication()).getCache(),
+				new int[] { R.id.topicIcon });
+		topicsGrid.setAdapter(thumbs);
+	}
+
+	private void initializeArticlesListView(View layout, final View footer) {
+		list = (ListView) layout.findViewById(R.id.list);
+		list.setCacheColorHint(0);
+		list.setOnItemClickListener(new OnItemClickListener() {
+			public void onItemClick(AdapterView<?> arg0, View arg1,
+					int position, long arg3) {
+				final Article article = (Article) arg0
+						.getItemAtPosition(position);
+				final String[] menuItems = new String[] {
+						"View article at " + article.getSource().getName(),
+						"Share via SMS", "Share via Email", "Share via Twitter","Share via Facebook" };
+				new AlertDialog.Builder(MainActivity.this)
+						.setTitle("Choose Action")
+						.setItems(menuItems,
+								new DialogInterface.OnClickListener() {
+									public void onClick(DialogInterface dialog,
+											final int which) {
+										switch (which) {
+										case 0:
+											LifeNowUtils.openBrowser(
+													MainActivity.this,
+													article.getUrl());
+											break;
+										case 1:
+											new SendSMSTask().execute(
+													article.getUrl(),
+													article.getHeadline());
+											break;
+										case 2:
+											new SendEmailTask().execute(
+													article.getUrl(),
+													article.getHeadline());
+											break;
+										case 3:
+											sendTwitter(article);
+										case 4:
+											startActivity(new Intent(getApplicationContext(),FacebookActivity.class));
+											break;
+										}
+									}
+
+								}).setNegativeButton("Cancel", null).create()
+						.show();
+
+			}
+		});
+
+		final Button moreButton = (Button) footer.findViewById(R.id.more);
+		final ProgressBar progressBar = (ProgressBar) footer
+				.findViewById(R.id.progressBar);
+		moreButton.setOnClickListener(new android.view.View.OnClickListener() {
+			public void onClick(View v) {
+				// load more
+				moreButton.setVisibility(View.GONE);
+				progressBar.setVisibility(View.VISIBLE);
+				new LoadArticlesTask(footer).execute();
+			}
+		});
+
+		list.addFooterView(footer);
+		ThumbnailAdapter thumbs = new ThumbnailAdapter(this,
+				new ArticleListAdapter(this, articlesList),
+				((Application) getApplication()).getCache(), IMAGE_IDS);
+
+		list.setAdapter(thumbs);
+	}
+
+	class SendSMSTask extends AsyncTask<String, String, String> {
+
+		ProgressDialog dialog;
+		String message;
+
+		@Override
+		protected void onPreExecute() {
+			dialog = new ProgressDialog(MainActivity.this);
+			dialog.setIndeterminate(true);
+			dialog.setMessage("Preparing SMS");
+			dialog.show();
+		}
+
+		@Override
+		protected String doInBackground(String... params) {
+			String url = params[0];
+			message = params[1];
+
+			try {
+				return APIHelper.getShortURL(url);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
+			return url;
+		}
+
+		@Override
+		protected void onPostExecute(String result) {
+			if (dialog != null && dialog.isShowing()) {
+				dialog.dismiss();
+			}
+
+			if (result != null) {
+				LifeNowUtils.sendSMS(MainActivity.this, message.concat(" ")
+						.concat(result));
+			}
+		}
+	}
+
+	class SendEmailTask extends AsyncTask<String, String, String> {
+
+		ProgressDialog dialog;
+		String message;
+
+		@Override
+		protected void onPreExecute() {
+			dialog = new ProgressDialog(MainActivity.this);
+			dialog.setIndeterminate(true);
+			dialog.setMessage("Preparing Email");
+			dialog.show();
+		}
+
+		@Override
+		protected String doInBackground(String... params) {
+			String url = params[0];
+			message = params[1];
+
+			try {
+				return APIHelper.getShortURL(url);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
+			return url;
+		}
+
+		@Override
+		protected void onPostExecute(String result) {
+			if (dialog != null && dialog.isShowing()) {
+				dialog.dismiss();
+			}
+
+			if (result != null) {
+				LifeNowUtils.sendEmail(MainActivity.this, message.concat(" ")
+						.concat(result));
+			}
+		}
+	}
+
+	class SendTwitterTask extends AsyncTask<String, String, Boolean> {
+
+		ProgressDialog dialog;
+		String message;
+
+		@Override
+		protected void onPreExecute() {
+			dialog = new ProgressDialog(MainActivity.this);
+			dialog.setIndeterminate(true);
+			dialog.setMessage("Posting to Twitter...");
+			dialog.show();
+		}
+
+		@Override
+		protected Boolean doInBackground(String... params) {
+			String url = params[0];
+			message = params[1];
+
+			try {
+				url = APIHelper.getShortURL(url);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
+			String finalMessage = message.concat(" ").concat(url);
+
+			twitter4j.Status status = null;
+			try {
+				status = TwitterUtil.getInstance().updateStatus(finalMessage);
+
+			} catch (TwitterException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+			if (status != null) {
+				return true;
+			} else {
+				return false;
+			}
+		}
+
+		@Override
+		protected void onPostExecute(Boolean result) {
+			if (dialog != null && dialog.isShowing()) {
+				dialog.dismiss();
+			}
+
+			if (result) {
+				Toast.makeText(MainActivity.this, "Twitter status updated",
+						1500).show();
+			} else {
+				new AlertDialog.Builder(MainActivity.this)
+						.setTitle("Network Error")
+						.setMessage(
+								"Unable to update twitter status. Please check internet connection and try again.")
+						.setPositiveButton("OK", null).create().show();
+			}
+		}
+	}
+
+	class LoadArticlesTask extends
+			AsyncTask<String, String, ArrayList<Article>> {
+
+		View footerView;
+		Button moreButton;
+		ProgressBar progressBar;
+
+		public LoadArticlesTask(View footer) {
+			this.footerView = footer;
+		}
+
+		@Override
+		protected void onPreExecute() {
+			moreButton = (Button) footerView.findViewById(R.id.more);
+			progressBar = (ProgressBar) footerView
+					.findViewById(R.id.progressBar);
+			moreButton.setVisibility(View.GONE);
+			progressBar.setVisibility(View.VISIBLE);
+
+		}
+
+		@Override
+		protected ArrayList<Article> doInBackground(String... params) {
+			try {
+				articlesListOffset += articlesList.size();
+				return APIHelper.getArticles(sources.split(","),
+						articlesListOffset);
+			} catch (Exception e) {
+				return null;
+			}
+		}
+
+		@Override
+		protected void onPostExecute(ArrayList<Article> result) {
+
+			if (result != null && result.size() > 0) {
+				list.removeFooterView(footerView);
+				int size = result.size();
+				for (int i = 0; i < size; i++) {
+					final Article article = result.get(i);
+					if (!articlesList.contains(article)) {
+						articlesList.add(article);
+					}
+				}
+
+				// moreButton.setBackgroundResource(R.drawable.morebutton);
+				moreButton.setText("More");
+				moreButton.setVisibility(View.VISIBLE);
+				progressBar.setVisibility(View.GONE);
+				list.addFooterView(footerView);
+				list.invalidate();
+			} else {
+
+				moreButton.setVisibility(View.VISIBLE);
+				progressBar.setVisibility(View.GONE);
+				moreButton.setText("Retry");
+			}
+		}
+	}
+
+	class LoadTopicsTask extends AsyncTask<String, String, ArrayList<Topic>> {
+
+		ProgressDialog dialog;
+
+		@Override
+		protected void onPreExecute() {
+			dialog = new ProgressDialog(MainActivity.this);
+			dialog.setIndeterminate(true);
+			dialog.setMessage("Loading topics...");
+			dialog.show();
+		}
+
+		@Override
+		protected ArrayList<Topic> doInBackground(String... params) {
+			try {
+				topicsListOffset += topicsList.size();
+				return APIHelper
+						.getTopics(sources.split(","), topicsListOffset);
+			} catch (Exception e) {
+				e.printStackTrace();
+				return null;
+			}
+		}
+
+		@Override
+		protected void onPostExecute(ArrayList<Topic> result) {
+			if (dialog != null && dialog.isShowing()) {
+				dialog.dismiss();
+			}
+
+			if (result != null && result.size() > 0) {
+				topicsList.addAll(result);
+				ThumbnailAdapter thumbs = new ThumbnailAdapter(
+						MainActivity.this, new TopicsListAdapter(
+								MainActivity.this, topicsList),
+						((Application) getApplication()).getCache(),
+						new int[] { R.id.topicIcon });
+				topicsGrid.setAdapter(thumbs);
+			} else {
+				new AlertDialog.Builder(MainActivity.this)
+						.setTitle("Network Error")
+						.setMessage(
+								"Unable to connect to server. Please check and try again.")
+						.setPositiveButton("Retry",
+								new DialogInterface.OnClickListener() {
+									public void onClick(DialogInterface dialog,
+											int which) {
+										new LoadTopicsTask().execute();
+
+									}
+								}).create().show();
+			}
+		}
+	}
+
+	class LoadVideoTask extends AsyncTask<String, String, ArrayList<Video>> {
+
+		View footerView;
+		Button moreButton;
+		ProgressBar progressBar;
+
+		public LoadVideoTask(View footer) {
+			this.footerView = footer;
+
+		}
+
+		@Override
+		protected void onPreExecute() {
+			moreButton = (Button) footerView.findViewById(R.id.more);
+			progressBar = (ProgressBar) footerView
+					.findViewById(R.id.progressBar);
+			moreButton.setVisibility(View.GONE);
+			progressBar.setVisibility(View.VISIBLE);
+
+		}
+
+		@Override
+		protected ArrayList<Video> doInBackground(String... params) {
+
+			ArrayList<Video> list = new ArrayList<Video>();
+
+			try {
+				videoListOffset += videoList.size();
+				list = APIHelper.getVideos(videoListOffset);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
+			return list;
+		}
+
+		@Override
+		protected void onPostExecute(ArrayList<Video> result) {
+
+			if (result != null && result.size() > 0) {
+				list.removeFooterView(footerView);
+				int size = result.size();
+				for (int i = 0; i < size; i++) {
+					final Video video = result.get(i);
+					if (!videoList.contains(video)) {
+						videoList.add(video);
+					}
+				}
+
+				moreButton.setText("More");
+				moreButton.setVisibility(View.VISIBLE);
+				progressBar.setVisibility(View.GONE);
+				list.addFooterView(footerView);
+				list.invalidate();
+			} else {
+
+				moreButton.setVisibility(View.VISIBLE);
+				progressBar.setVisibility(View.GONE);
+				moreButton.setText("Retry");
+			}
+		}
+
+	}
+
+	class LoadShortURLTask extends AsyncTask<String, String, String> {
+
+		ProgressDialog dialog;
+
+		@Override
+		protected void onPreExecute() {
+			dialog = new ProgressDialog(MainActivity.this);
+			dialog.setIndeterminate(true);
+			dialog.setMessage("Converting link to short url");
+			dialog.show();
+		}
+
+		@Override
+		protected String doInBackground(String... params) {
+			try {
+				return APIHelper.getShortURL(params[0]);
+			} catch (Exception e) {
+
+			}
+
+			return null;
+		}
+
+		@Override
+		protected void onPostExecute(String result) {
+			if (dialog != null && dialog.isShowing()) {
+				dialog.dismiss();
+			}
+
+			if (result == null) {
+				new AlertDialog.Builder(MainActivity.this)
+						.setTitle("Network Error")
+						.setMessage(
+								"Unable to contact server. Please check internet connection")
+						.setPositiveButton("OK", null).create().show();
+			}
+
+			super.onPostExecute(result);
+		}
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		menu.clear();
+		// MenuBuilder.buildRefreshMenuItem(this, menu, 1);
+		MenuBuilder.buildSettingsMenuItem(this, menu, 2);
+		MenuBuilder.buildAboutMenuItem(this, menu, 3);
+		return super.onCreateOptionsMenu(menu);
+	}
+
+	private void sendTwitter(Article article) {
+		// if (!RememberMePreferences.getUserName().equals("")
+		// && !RememberMePreferences.getPassword().equals("")) {
+		new SendTwitterTask().execute(article.getUrl(), article.getHeadline());
+		// } else {
+		// Intent intent = new Intent(MainActivity.this, TwitterLogin.class);
+		// intent.putExtra("article", article);
+		// startActivityForResult(intent, 100);
+		// }
+	}
+
+	private void sendTwitter(Video video) {
+		// if (!RememberMePreferences.getUserName().equals("")
+		// && !RememberMePreferences.getPassword().equals("")) {
+		new SendTwitterTask().execute(video.getUrl(), video.getTitle());
+		// } else {
+		// Intent intent = new Intent(MainActivity.this, TwitterLogin.class);
+		// intent.putExtra("video", video);
+		// startActivityForResult(intent, 101);
+		// }
+	}
+
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		if (requestCode == 100) {
+			if (resultCode == Activity.RESULT_OK) {
+				Article article = (Article) data
+						.getSerializableExtra("article");
+				new SendTwitterTask().execute(article.getUrl(),
+						article.getHeadline());
+			}
+		} else if (requestCode == 101) {
+			if (resultCode == Activity.RESULT_OK) {
+				Video video = (Video) data.getSerializableExtra("video");
+				new SendTwitterTask().execute(video.getUrl(), video.getTitle());
+			}
+		}
+	}
+
+	public void refreshList() {
+		switch (currentView) {
+		case VIEW_ARTICLES: {
+			articlesList.clear();
+			list.invalidate();
+			new LoadArticlesTask(articlesFooter).execute();
+		}
+		}
+
+	}
+
+}

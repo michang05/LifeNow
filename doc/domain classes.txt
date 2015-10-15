@@ -1,0 +1,63 @@
+Article
+	timestamp - date
+	source - pojo
+	headline - string
+	excerpt - string
+	url - string
+	article_id - string
+
+Quote
+	quote_id - string
+	timestamp - date
+	quote_text - string
+	source - pojo
+	article - pojo
+	
+Topic
+	topic_id - string
+	type - string
+	name - string
+	image - pojo
+
+Image
+	url - string
+	daylife_url - string
+	thumb_url - string
+	timestamp - date
+	credit - string
+	image_id - string
+	caption - string
+	source - pojo
+	
+
+
+Source
+	name - string
+	favicon - string
+	source_id
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

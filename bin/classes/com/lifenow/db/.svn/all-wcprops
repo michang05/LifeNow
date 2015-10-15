@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/lifenow/lifenow/!svn/ver/10/LifeNow/src/com/lifenow/db
+END
+QuoteAccessor.java
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/lifenow/lifenow/!svn/ver/10/LifeNow/src/com/lifenow/db/QuoteAccessor.java
+END
+TopicAccessor.java
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/lifenow/lifenow/!svn/ver/3/LifeNow/src/com/lifenow/db/TopicAccessor.java
+END
+DBUtil.java
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/lifenow/lifenow/!svn/ver/3/LifeNow/src/com/lifenow/db/DBUtil.java
+END
+SourceAccessor.java
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/lifenow/lifenow/!svn/ver/3/LifeNow/src/com/lifenow/db/SourceAccessor.java
+END
+ImageAccessor.java
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/lifenow/lifenow/!svn/ver/9/LifeNow/src/com/lifenow/db/ImageAccessor.java
+END
+ArticleAccessor.java
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/lifenow/lifenow/!svn/ver/9/LifeNow/src/com/lifenow/db/ArticleAccessor.java
+END

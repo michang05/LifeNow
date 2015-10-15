@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/lifenow/lifenow/!svn/ver/19/LifeNow/src/com/lifenow/parser
+END
+ArticleParser.java
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/lifenow/lifenow/!svn/ver/16/LifeNow/src/com/lifenow/parser/ArticleParser.java
+END
+BitlyParser.java
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/lifenow/lifenow/!svn/ver/24/LifeNow/src/com/lifenow/parser/BitlyParser.java
+END
+YouTubeVideoFeedParser.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/lifenow/lifenow/!svn/ver/26/LifeNow/src/com/lifenow/parser/YouTubeVideoFeedParser.java
+END
+QuoteParser.java
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/lifenow/lifenow/!svn/ver/10/LifeNow/src/com/lifenow/parser/QuoteParser.java
+END
+TopicParser.java
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/lifenow/lifenow/!svn/ver/16/LifeNow/src/com/lifenow/parser/TopicParser.java
+END

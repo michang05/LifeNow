@@ -1,0 +1,451 @@
+package com.lifenow;
+
+import java.io.BufferedInputStream;
+import java.io.InputStream;
+import java.net.URL;
+import java.net.URLConnection;
+import java.net.UnknownHostException;
+import java.util.ArrayList;
+import java.util.List;
+
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
+import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
+import android.os.AsyncTask;
+import android.os.Bundle;
+import android.os.Handler;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.GridView;
+import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.ProgressBar;
+import android.widget.TabHost;
+import android.widget.TextView;
+import android.widget.AdapterView.OnItemClickListener;
+
+import com.lifenow.daypi.APIHelper;
+import com.lifenow.db.ArticleAccessor;
+import com.lifenow.db.DBUtil;
+import com.lifenow.http.HTTPUtils.ApiException;
+import com.lifenow.http.HTTPUtils.ParseException;
+import com.lifenow.pojo.Article;
+import com.lifenow.pojo.Quote;
+import com.lifenow.pojo.Topic;
+import com.lifenow.utils.ThumbnailAdapter;
+
+public class MainActivity extends Activity implements TabHost.TabContentFactory {
+
+	private String[] sources = { "00ztgIm6N46jg", "0dmgbH7fqLbMT",
+			"04Xt71JaPXcaH", "0bYNckA4Bxc6A", "0aFS1Gt4xu6Ih", "02geckG8IH1d4",
+			"0flCaCM3LkeiV", "0blKbZP140g1Z", "01DFbf7cnK4sc", "0csee4fg3o5i4",
+			"0g0BarQeCPe2i", "0eAceMCfZg0Zz", "0gTcffMcyQ1Ax", "0cZg7ph3O9eeF",
+			"0083e6H4MndJP" };
+
+	private static final int SETTINGS = Menu.FIRST;
+
+	private SQLiteDatabase db;
+	private ListView list;
+	private GridView topicsGrid;
+	private ArrayList<Article> articlesList = new ArrayList<Article>();
+	private ArrayList<Topic> topicsList = new ArrayList<Topic>();
+
+	private static final int VIEW_ARTICLES = 0;
+	private static final int VIEW_TOPICS = 1;
+	private static final int VIEW_VIDEOS = 2;
+
+	private int articlesListOffset;
+	private int topicsListOffset;
+
+	private int currentView;
+	private ThumbnailAdapter thumbs = null;
+
+	private static final int[] IMAGE_IDS = { R.id.sourceIcon };
+
+	/** Called when the activity is first created. */
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.main);
+
+		db = new DBUtil(this).getReadableDatabase();
+
+		final TabHost tabHost = (TabHost) findViewById(R.id.result);
+		tabHost.setup();
+		tabHost.setPadding(2, 5, 2, 0);
+
+		tabHost.addTab(tabHost.newTabSpec("Articles").setIndicator("Articles",
+				getResources().getDrawable(R.drawable.articles)).setContent(
+				this));
+		tabHost
+				.addTab(tabHost.newTabSpec("Topics").setIndicator("Topics",
+						getResources().getDrawable(R.drawable.quotes))
+						.setContent(this));
+		tabHost
+				.addTab(tabHost.newTabSpec("Videos").setIndicator("Videos",
+						getResources().getDrawable(R.drawable.videos))
+						.setContent(this));
+	}
+
+	@Override
+	protected void onDestroy() {
+		if (db != null && db.isOpen()) {
+			db.execSQL("delete from article");
+			db.close();
+		}
+		super.onDestroy();
+	}
+
+	@Override
+	public View createTabContent(String indicator) {
+		if (indicator.equals("Articles")) {
+			currentView = VIEW_ARTICLES;
+
+			View layout = getLayoutInflater().inflate(R.layout.articlelist,
+					null);
+			final View footer = initializeListView(layout);
+
+			new LoadArticlesTask(footer).execute();
+
+			return layout;
+		} else if (indicator.equals("Topics")) {
+			currentView = VIEW_TOPICS;
+
+			View layout = getLayoutInflater()
+					.inflate(R.layout.topicslist, null);
+			topicsGrid = (GridView) layout.findViewById(R.id.topics);
+			topicsGrid.setOnItemClickListener(new OnItemClickListener() {
+				@Override
+				public void onItemClick(AdapterView<?> arg0, View arg1,
+						int arg2, long arg3) {
+					final View topicsPreview = getLayoutInflater().inflate(
+							R.layout.topicspreview, null);
+					final Topic topic = (Topic) arg0.getItemAtPosition(arg2);
+
+					final ProgressBar indicator = (ProgressBar) topicsPreview
+							.findViewById(R.id.loadIndicator);
+
+					final ImageView topicIcon = (ImageView) topicsPreview
+							.findViewById(R.id.topicIcon);
+					topicIcon.setImageResource(R.drawable.largeimageholder);
+					final Handler handler = new Handler();
+
+<<<<<<< .mine
+				    topicIcon.invalidate();
+			 	    topicIcon.setVisibility(View.VISIBLE);
+				    indicator.setVisibility(View.GONE);
+=======
+					new Thread() {
+						public void run() {
+							Bitmap bm = null;
+							try {
+								URL imageURL = new URL(topic.getImage()
+										.getUrl());
+								URLConnection conn = imageURL.openConnection();
+								conn.connect();
+								InputStream is2 = conn.getInputStream();
+								BufferedInputStream bis = new BufferedInputStream(
+										is2, 16384);
+								bm = BitmapFactory.decodeStream(bis);
+								bis.close();
+								is2.close();
+							} catch (Exception e) {
+								bm = null;
+							}
+>>>>>>> .r17
+
+							final Bitmap imageBitmap = bm;
+							handler.post(new Runnable() {
+								@Override
+								public void run() {
+									if (imageBitmap != null) {
+										topicIcon.setImageBitmap(imageBitmap);
+
+									} else {
+										topicIcon
+												.setImageResource(R.drawable.largeimageholder);
+									}
+
+									topicIcon.invalidate();
+									topicIcon.setVisibility(View.VISIBLE);
+									indicator.setVisibility(View.GONE);
+
+								}
+							});
+						};
+					}.start();
+
+					final TextView topicName = (TextView) topicsPreview
+							.findViewById(R.id.topicName);
+					topicName.setText(topic.getName());
+
+					final TextView topicCaption = (TextView) topicsPreview
+							.findViewById(R.id.topicCaption);
+					topicCaption.setText(topic.getImage().getCaption());
+
+					new AlertDialog.Builder(MainActivity.this).setView(
+							topicsPreview).setNegativeButton("Close", null)
+							.create().show();
+				}
+			});
+			thumbs = new ThumbnailAdapter(this, new TopicsListAdapter(this,
+					topicsList), ((Application) getApplication()).getCache(),
+					new int[] { R.id.topicIcon });
+			topicsGrid.setAdapter(thumbs);
+
+			new LoadTopicsTask().execute();
+
+			return layout;
+		} else if (indicator.equals("Videos")) {
+			currentView = VIEW_VIDEOS;
+		}
+
+		TextView tv = new TextView(this);
+		tv.setText("Testing");
+		return tv;
+	}
+
+	private View initializeListView(View layout) {
+		list = (ListView) layout.findViewById(R.id.list);
+		list.setCacheColorHint(0);
+		list.setOnItemClickListener(new OnItemClickListener() {
+			public void onItemClick(AdapterView<?> arg0, View arg1,
+					int position, long arg3) {
+				final Uri uri = Uri.parse(((Article) arg0
+						.getItemAtPosition(position)).getUrl());
+				final Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+				startActivityIfNeeded(intent, 0);
+			}
+		});
+
+		final View footer = getLayoutInflater().inflate(R.layout.itemfooter,
+				null);
+		final Button moreButton = (Button) footer.findViewById(R.id.more);
+		final ProgressBar progressBar = (ProgressBar) footer
+				.findViewById(R.id.progressBar);
+		moreButton.setOnClickListener(new android.view.View.OnClickListener() {
+			public void onClick(View v) {
+				// load more
+				moreButton.setVisibility(View.GONE);
+				progressBar.setVisibility(View.VISIBLE);
+				new LoadArticlesTask(footer).execute();
+			}
+		});
+
+		list.addFooterView(footer);
+		thumbs = new ThumbnailAdapter(this, new ArticleListAdapter(this,
+				articlesList), ((Application) getApplication()).getCache(),
+				IMAGE_IDS);
+
+		list.setAdapter(thumbs);
+		return footer;
+	}
+
+	class LoadArticlesTask extends
+			AsyncTask<String, String, ArrayList<Article>> {
+
+		View footerView;
+		Button moreButton;
+		ProgressBar progressBar;
+
+		public LoadArticlesTask(View footer) {
+			this.footerView = footer;
+		}
+
+		@Override
+		protected void onPreExecute() {
+			moreButton = (Button) footerView.findViewById(R.id.more);
+			progressBar = (ProgressBar) footerView
+					.findViewById(R.id.progressBar);
+			moreButton.setVisibility(View.GONE);
+			progressBar.setVisibility(View.VISIBLE);
+		}
+
+		@Override
+		protected ArrayList<Article> doInBackground(String... params) {
+			try {
+				articlesListOffset += articlesList.size();
+				return APIHelper.getArticles(sources, articlesListOffset);
+			} catch (Exception e) {
+				throw new RuntimeException(e.getMessage());
+			}
+		}
+
+		@Override
+		protected void onPostExecute(ArrayList<Article> result) {
+
+			if (result != null && result.size() > 0) {
+				list.removeFooterView(footerView);
+				int size = result.size();
+				for (int i = 0; i < size; i++) {
+					final Article article = result.get(i);
+					if (!articlesList.contains(article)) {
+						articlesList.add(article);
+					}
+				}
+
+				moreButton.setBackgroundResource(R.drawable.morebutton);
+				moreButton.setVisibility(View.VISIBLE);
+				progressBar.setVisibility(View.GONE);
+				list.addFooterView(footerView);
+				list.invalidate();
+			} else {
+
+				moreButton.setVisibility(View.VISIBLE);
+				progressBar.setVisibility(View.GONE);
+				moreButton.setBackgroundResource(R.drawable.retrybutton);
+			}
+		}
+	}
+
+	class LoadTopicsTask extends AsyncTask<String, String, ArrayList<Topic>> {
+
+		ProgressDialog dialog;
+
+		@Override
+		protected void onPreExecute() {
+			dialog = new ProgressDialog(MainActivity.this);
+			dialog.setIndeterminate(true);
+			dialog.setMessage("Loading topics...");
+			dialog.show();
+		}
+
+		@Override
+		protected ArrayList<Topic> doInBackground(String... params) {
+			try {
+				topicsListOffset += topicsList.size();
+				return APIHelper.getTopics(sources, topicsListOffset);
+			} catch (Exception e) {
+				throw new RuntimeException(e.getMessage());
+			}
+		}
+
+		@Override
+		protected void onPostExecute(ArrayList<Topic> result) {
+			if (dialog != null && dialog.isShowing()) {
+				dialog.dismiss();
+			}
+
+			if (result != null && result.size() > 0) {
+				topicsList.addAll(result);
+				thumbs = new ThumbnailAdapter(MainActivity.this,
+						new TopicsListAdapter(MainActivity.this, topicsList),
+						((Application) getApplication()).getCache(),
+						new int[] { R.id.topicIcon });
+				topicsGrid.setAdapter(thumbs);
+			}
+		}
+	}
+
+	private void createTestArticle() {
+		Article articleObj = new Article();
+		articleObj.setArticleId("123");
+		articleObj.setCategory("TOP_NEWS");
+		articleObj.setExcerpt("blah blah");
+		articleObj.setFavorite(0);
+		articleObj.setHeadline("headline");
+		articleObj.setSourceId("#blah blah source ud");
+		// articleObj.setTimestamp("2008-01-18 18:51:27");
+		articleObj.setUrl("http://someurl");
+
+		try {
+			ArticleAccessor.insert(articleObj, db);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		try {
+			// Log.v("ENTERING ARTICLES ===================");
+			// List<Article> articles = APIHelper.getArticles("Top News");
+			// for(Article article : articles)
+			// {
+			// Log.v(article.getHeadline());
+			// Log.v(article.getTimestamp());
+			// Log.v(article.getUrl());
+			// Log.v(article.getArticleId());
+			// Log.v(article.getExcerpt());
+			// Log.v("SOURCES---");
+			// Log.v(article.getSource().getName());
+			// Log.v(article.getSource().getSourceId());
+			// Log.v(article.getSource().getFavicon());
+			// Log.v("-------------------------------");
+			// }
+			Log.v("ENTERING TOPICS ===================");
+			// List<Topic> topics = APIHelper.getTopics("Top News");
+			// for(Topic topic : topics)
+			// {
+			// Log.v(topic.getTopicId());
+			// Log.v(topic.getName());
+			// Log.v(topic.getType());
+			// Log.v("IMAGE---");
+			// Log.v(topic.getImage().getUrl());
+			// Log.v(topic.getImage().getThumbURL());
+			// Log.v(topic.getImage().getTimestamp());
+			// Log.v(topic.getImage().getCredit());
+			// Log.v(topic.getImage().getImageId());
+			// Log.v(topic.getImage().getCaption());
+			// Log.v(topic.getImage().getDayLifeURL());
+			// Log.v("SOURCES---");
+			// Log.v(topic.getSource().getName());
+			// Log.v(topic.getSource().getSourceId());
+			// Log.v(topic.getSource().getFavicon());
+			// Log.v("-------------------------------");
+			// }
+			Log.v("ENTERING QUOTES ===================");
+			List<Quote> quotes = APIHelper.getQuotes("Top News");
+			// for(Quote quote : quotes)
+			// {
+			// Log.v(quote.getQuoteId());
+			// Log.v(quote.getQuoteText());
+			// Log.v(quote.getTimestamp());
+			// Log.v("ARTICLES---");
+			// Log.v(quote.getArticle().getArticleId());
+			// Log.v(quote.getArticle().getTimestamp());
+			// Log.v(quote.getArticle().getHeadline());
+			// Log.v(quote.getArticle().getUrl());
+			// Log.v("SOURCES---");
+			// Log.v(quote.getSource().getName());
+			// Log.v(quote.getSource().getSourceId());
+			// Log.v(quote.getSource().getFavicon());
+			// Log.v("-------------------------------");
+			// }
+		} catch (UnknownHostException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ApiException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		menu.add(0, SETTINGS, 0, "Settings");		
+
+		return super.onCreateOptionsMenu(menu);
+	}
+	
+	/* (non-Javadoc)
+	 * @see android.app.Activity#onOptionsItemSelected(android.view.MenuItem)
+	 */
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+		case SETTINGS:
+			Intent settings = new Intent(this,Settings.class);
+			startActivity(settings);
+			break;
+		}
+		return super.onOptionsItemSelected(item);
+	}
+}

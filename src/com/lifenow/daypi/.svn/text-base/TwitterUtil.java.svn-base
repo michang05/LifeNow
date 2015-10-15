@@ -1,0 +1,30 @@
+package com.lifenow.daypi;
+
+import winterwell.jtwitter.Twitter;
+
+public class TwitterUtil {
+
+    private static Twitter twitter = null;
+    private static TwitterUtil instance = null;
+
+    private TwitterUtil() {
+    }
+
+    public void init(String username, String password) {
+	twitter = new Twitter(username, password);
+	twitter.setSource("Viida");
+    }
+
+    public static TwitterUtil getInstance() {
+	if (instance == null) {
+	    instance = new TwitterUtil();
+	}
+
+	return instance;
+    }
+    
+    public Twitter.Status updateStatus(String message){
+	return twitter.updateStatus(message);
+    }
+
+}

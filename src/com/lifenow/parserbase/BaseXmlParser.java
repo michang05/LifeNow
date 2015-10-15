@@ -1,0 +1,82 @@
+/**
+ * 
+ */
+package com.lifenow.parserbase;
+
+import java.io.InputStream;
+
+/**
+ * @author Michael Angelo
+ * 
+ */
+public abstract class BaseXmlParser implements XmlParser {
+
+    	
+	protected static final String RESPONSE="response";
+	
+	protected static final String NAME = "name";
+	protected static final String SOURCE_ID = "source_id";
+	protected static final String FAVICON_URL = "favicon_url";
+	
+	// ARTICLES
+	protected static final String HEADLINE = "headline";
+	protected static final String TIMESTAMP_ARTICLE = "timestamp";
+	protected static final String EXCERPT = "excerpt";
+	protected static final String URL_ARTICLE = "url";
+	protected static final String ARTICLE_ID = "article_id";
+	
+	//TOPICS
+	protected static final String TOPIC_ID="topic_id";
+	protected static final String NAME_TOPIC="name";
+	protected static final String TYPE="type";
+	protected static final String IMAGE = "hero_image";
+	protected static final String IMAGE_ID="hero_image_id";
+	protected static final String URL_TOPIC = "url";
+	protected static final String DAYLIFE_URL = "daylife_url";
+	protected static final String THUMB_URL = "hero_image_url";
+	protected static final String TIMESTAMP_TOPIC = "timestamp";
+	protected static final String CREDIT = "credit";
+	protected static final String CAPTION = "caption";
+
+	//QUOTES
+	protected static final String QUOTE_ID = "quote_id";
+	protected static final String TIMESTAMP_QUOTE = "timestamp";
+	protected static final String QUOTE_TEXT = "quote_text";
+	
+	protected static final String PAYLOAD="payload";
+	protected static final String ARTICLE="article";
+	protected static final String QUOTE="quote";
+	protected static final String TOPIC="topic";
+	protected static final String SOURCE="source";
+	
+	// VIDEO
+	protected static final String VIDEO_URI = "http://www.w3.org/2005/Atom";
+	protected static final String MEDIA_URI = "http://search.yahoo.com/mrss/";
+	protected static final String YOUTUBE_URI = "http://gdata.youtube.com/schemas/2007";
+	protected static final String FEED = "feed";
+	protected static final String ENTRY = "entry";
+	protected static final String TITLE = "title";
+	protected static final String LINK = "link";
+	protected static final String ALTERNATE = "alternate";
+	protected static final String MEDIAGROUP = "group";
+	protected static final String MEDIADESCRIPTION = "description";
+	protected static final String MEDIATHUMBNAIL = "thumbnail";
+	protected static final String UPLOADED = "uploaded";
+	
+
+	
+	
+	private InputStream inputStream;
+
+	protected BaseXmlParser(InputStream inputStream) {
+		this.inputStream = inputStream;
+	}
+
+	public InputStream getInputStream() {
+		return inputStream;
+	}
+
+	protected BaseXmlParser() {
+
+	}
+}

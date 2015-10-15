@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string-array name="Source_Name">
+		<item>ABC News</item>
+		<item>AOL News</item>
+		<item>BBC News</item>
+		<item>BBC World</item>
+		<item>Business Week</item>
+		<item>Channel News Asia</item>
+		<item>CNBC</item>
+		<item>CNN</item>
+		<item>ComputerWorld</item>
+		<item>FOX News</item>
+		<item>Newsweek</item>
+		<item>Reuters</item>
+		<item>Sky News</item>
+		<item>Time Magazine</item>
+		<item>USA Today</item>
+	</string-array>
+	
+	<string-array name="Source_Name_Codes">
+		<item>00ztgIm6N46jg</item>
+		<item>0dmgbH7fqLbMT</item>
+		<item>04Xt71JaPXcaH</item>
+		<item>0bYNckA4Bxc6A</item>
+		<item>0aFS1Gt4xu6Ih</item>
+		<item>02geckG8IH1d4</item>
+		<item>0flCaCM3LkeiV</item>
+		<item>0blKbZP140g1Z</item>
+		<item>01DFbf7cnK4sc</item>
+		<item>0csee4fg3o5i4</item>
+		<item>0g0BarQeCPe2i</item>
+		<item>0eAceMCfZg0Zz</item>
+		<item>0gTcffMcyQ1Ax</item>
+		<item>0cZg7ph3O9eeF</item>
+		<item>0083e6H4MndJP</item>
+	</string-array>
+</resources>

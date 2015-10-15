@@ -1,0 +1,254 @@
+package com.lifenow.daypi;
+
+import java.io.ByteArrayInputStream;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
+import java.net.UnknownHostException;
+import java.security.MessageDigest;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import android.os.SystemClock;
+
+import com.lifenow.Log;
+import com.lifenow.constants.DayPIConstants;
+import com.lifenow.http.HTTPUtils;
+import com.lifenow.http.HTTPUtils.ApiException;
+import com.lifenow.http.HTTPUtils.ParseException;
+import com.lifenow.parser.ArticleParser;
+import com.lifenow.parser.BitlyParser;
+import com.lifenow.parser.QuoteParser;
+import com.lifenow.parser.TopicParser;
+import com.lifenow.parser.YouTubeVideoFeedParser;
+import com.lifenow.pojo.Article;
+import com.lifenow.pojo.Quote;
+import com.lifenow.pojo.Topic;
+import com.lifenow.pojo.Video;
+
+public class APIHelper {
+
+	public static ArrayList<Article> getArticles(String[] sources, int offset)
+			throws ApiException, ParseException, UnknownHostException {
+		long start = SystemClock.currentThreadTimeMillis();
+
+		Arrays.sort(sources);
+
+		StringBuilder builder = new StringBuilder();
+		for (String source : sources) {
+			builder.append(source);
+		}
+		String signature = createSignature(builder.toString());
+		StringBuilder urlBuilder = new StringBuilder(
+				DayPIConstants.SOURCE_GET_ARTICLES);
+		urlBuilder.append("&accesskey=" + DayPIConstants.ACCESS_KEY);
+		urlBuilder.append("&signature=" + signature);
+		for (String source : sources) {
+			urlBuilder.append("&source_id=" + source);
+		}
+
+		urlBuilder.append("&sort=date");
+		urlBuilder.append("&include_image=1");
+		urlBuilder.append("&limit=25");
+		urlBuilder.append("&offset=" + offset);
+
+		final String content = HTTPUtils.getUrlContent(urlBuilder.toString());
+		Log.v(content);
+		ArrayList<Article> list = new ArticleParser()
+				.parse(new ByteArrayInputStream(content.getBytes()));
+		Log.v("Took: " + (SystemClock.currentThreadTimeMillis() - start)
+				+ " to parse " + list.size() + " items");
+		return list;
+	}
+
+	public static List<Article> getArticlesByCategory(String category,
+			String[] sources) throws ApiException, ParseException,
+			UnknownHostException {
+		long start = SystemClock.currentThreadTimeMillis();
+
+		Arrays.sort(sources);
+
+		StringBuilder builder = new StringBuilder(category);
+		for (String source : sources) {
+			builder.append(source);
+		}
+		String signature = createSignature(category);
+		StringBuilder urlBuilder = new StringBuilder(
+				DayPIConstants.SEARCH_GET_ARTICLES);
+		urlBuilder.append("&query=" + category);
+		urlBuilder.append("&accesskey=" + DayPIConstants.ACCESS_KEY);
+		urlBuilder.append("&signature=" + signature);
+		for (String source : sources) {
+			urlBuilder.append("&source_whitelist=" + source);
+		}
+
+		urlBuilder.append("&sort=date");
+		urlBuilder.append("&include_image=1");
+		urlBuilder.append("&limit=50");
+		urlBuilder.append("&offset=0");
+
+		final String content = HTTPUtils.getUrlContent(urlBuilder.toString());
+		Log.v(content);
+		List<Article> list = new ArticleParser()
+				.parse(new ByteArrayInputStream(content.getBytes()));
+		Log.v("Took: " + (SystemClock.currentThreadTimeMillis() - start)
+				+ " to parse " + list.size() + " items");
+		return list;
+	}
+
+	public static ArrayList<Topic> getTopics(String[] sources, int offset)
+			throws ApiException, ParseException, UnknownHostException {
+		long start = SystemClock.currentThreadTimeMillis();
+
+		Arrays.sort(sources);
+
+		StringBuilder builder = new StringBuilder();
+		for (String source : sources) {
+			builder.append(source);
+		}
+		String signature = createSignature(builder.toString());
+		StringBuilder urlBuilder = new StringBuilder(
+				DayPIConstants.SOURCE_GET_TOPICS);
+		urlBuilder.append("&accesskey=" + DayPIConstants.ACCESS_KEY);
+		urlBuilder.append("&signature=" + signature);
+		for (String source : sources) {
+			urlBuilder.append("&source_id=" + source);
+		}
+
+		urlBuilder.append("&sort=date");
+		urlBuilder.append("&include_image=1");
+		urlBuilder.append("&limit=50");
+		urlBuilder.append("&offset=" + offset);
+		final String content = HTTPUtils.getUrlContent(urlBuilder.toString());
+		Log.v(content);
+		final ArrayList<Topic> list = new TopicParser()
+				.parse(new ByteArrayInputStream(content.getBytes()));
+		Log.v("Took: " + (SystemClock.currentThreadTimeMillis() - start)
+				+ " to parse " + list.size() + " items");
+		return list;
+	}
+
+	public static List<Quote> getQuotes(String category) throws ApiException,
+			ParseException, UnknownHostException {
+		long start = SystemClock.currentThreadTimeMillis();
+		final String content = HTTPUtils.getUrlContent(buildParams(
+				DayPIConstants.SEARCH_GET_QUOTES, category));
+		List<Quote> list = new QuoteParser().parse(new ByteArrayInputStream(
+				content.getBytes()));
+
+		Log.v("Took: " + (SystemClock.currentThreadTimeMillis() - start)
+				+ " to parse " + list.size() + " items");
+
+		return list;
+	}
+
+	private static String buildParams(String endpoint, String category) {
+		return buildParams(endpoint, category, false);
+	}
+
+	private static String buildParams(String endpoint, String category,
+			boolean includeImage) {
+
+		String sourceID = "0csee4fg3o5i4";
+		String signature = createSignature(sourceID);
+		StringBuilder urlBuilder = new StringBuilder(endpoint);
+		// urlBuilder.append("query=" + urlEncode(category));
+		urlBuilder.append("&accesskey=" + DayPIConstants.ACCESS_KEY);
+		urlBuilder.append("&signature=" + signature);
+		urlBuilder.append("&source_id=" + sourceID);
+		urlBuilder.append("&sort=daterank");
+		// urlBuilder.append("&source_filter_id=05NX24nfAA8jP");
+		urlBuilder.append("&include_image=1");
+
+		// if(includeImage){
+		// urlBuilder.append("&include_image=1");
+		// }
+
+		return urlBuilder.toString();
+	}
+
+	private static String createSignature(String coreInput) {
+		StringBuilder builder = new StringBuilder();
+		builder.append(coreInput);
+		String md5 = getMD5Hash(builder.toString());
+		return md5;
+	}
+
+	private static String urlEncode(String value) {
+		try {
+			return URLEncoder.encode(value, "UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+
+		return null;
+	}
+
+	private static String urlDecode(String value) {
+		try {
+			return URLDecoder.decode(value, "UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+
+		return null;
+	}
+
+	private static String getMD5Hash(String query) {
+		StringBuffer buffer = new StringBuffer();
+		buffer.append(DayPIConstants.ACCESS_KEY);
+		buffer.append(DayPIConstants.SHARED_SECRET);
+		buffer.append(query);
+		try {
+			MessageDigest md = MessageDigest.getInstance("MD5");
+			StringBuffer result = new StringBuffer();
+			byte bbytes[] = md.digest(buffer.toString().getBytes());
+			for (int i = 0; i < bbytes.length; i++) {
+				byte b = bbytes[i];
+				result.append(Integer.toHexString((b & 0xf0) >>> 4));
+				result.append(Integer.toHexString(b & 0x0f));
+			}
+			return result.toString();
+		} catch (java.security.NoSuchAlgorithmException e) {
+			Log.v("MD5 does not appear to be supported" + e);
+		}
+
+		return "";
+	}
+
+	public static ArrayList<Video> getVideos(int offset)
+			throws UnknownHostException, ApiException {
+		// final String content =
+		// HTTPUtils.getUrlContent("http://gdata.youtube.com/feeds/api/videos?"+urlEncode("q=top news&orderby=published&author=ABCNews,FoxNewsChannel,NewsweekVideo,ReutersVideo,skynews,TimeMagazine,USATODAY&max-results=25&v=2"));
+		Log.v("OFFSET:::::::::::::::::::::::::::: " + offset);
+		final String content = HTTPUtils
+				.getUrlContent("http://gdata.youtube.com/feeds/api/videos?category=News&max-results=25&q=top%20stories&orderby=published&start-index="
+						+ offset);
+		return new YouTubeVideoFeedParser().parse(new ByteArrayInputStream(
+				content.getBytes()));
+	}
+
+	public static String getShortURL(String url) throws UnknownHostException,
+			ApiException {
+		StringBuilder builder = new StringBuilder(
+				DayPIConstants.BITLY_API_ENDPOINT);
+		builder.append("version=2.0.1");
+		builder.append("&format=xml");
+		builder.append("&longUrl=" + urlEncode(url));
+		builder.append("&login=" + DayPIConstants.BITLY_API_USER);
+		builder.append("&apiKey=" + DayPIConstants.BITLY_API_KEY);
+
+		final String content = HTTPUtils.getUrlContent(builder.toString());
+		Log.v(content);
+		ArrayList<String> response = new BitlyParser()
+				.parse(new ByteArrayInputStream(content.getBytes()));
+		Log.v("response size:::::: " + response.size());
+		if (response.size() > 0) {
+			return response.get(0);
+		}
+
+		throw new ApiException("Unable to fetch shortened url for " + url);
+	}
+
+}
